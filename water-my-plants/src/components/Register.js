@@ -4,20 +4,20 @@ import Link from "react-router-dom";
 
 //user can sign-up / create an account by providing a unique username, a valid mobile phoneNumber and a password.
 
-///// Initial Form Values /////
-const {  } = props; // pass in shizzz here from app.js
-
-const initialNewUser = {
-    username: '',
-    phoneNumber: '',
-    password: ''
-}
-///// States /////
-const [ newUser, setNewUser ] = useState( initialNewUser );
-const { username, phoneNumber, password } = newUser;
 
 const RegisterForm = props => {
-
+    ///// Initial Form Values /////
+    const {  } = props; // pass in shizzz here from app.js
+    
+    const initialNewUser = {
+        username: '',
+        phoneNumber: '',
+        password: ''
+    }
+    ///// States /////
+    const [ newUser, setNewUser ] = useState( initialNewUser );
+    const { username, phoneNumber, password } = newUser;
+    
     const userSignUp = ( newUser ) => {
         axios
             .post('', newUser )
@@ -65,7 +65,7 @@ const RegisterForm = props => {
                 <label className = "form-label">Phone Number</label>
                     <input 
                         name = "phonenumber"
-                        type = "phonenumber"
+                        type = "tel"
                         value = { phonenumber }
                         onChange = { handleInputChange }
                         placeholder = "Phone Number"                    
