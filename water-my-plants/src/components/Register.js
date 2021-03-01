@@ -1,19 +1,19 @@
 import React, { useState } from "react";
 import axios from "axios";
-import Link from "react-router-dom";
+import { Link } from "react-router-dom";
 
 //user can sign-up / create an account by providing a unique username, a valid mobile phoneNumber and a password.
 
+///// Initial Form Values /////
+const initialNewUser = {
+    username: '',
+    phoneNumber: '',
+    password: ''
+}
 
 const RegisterForm = props => {
-    ///// Initial Form Values /////
     const {  } = props; // pass in shizzz here from app.js
     
-    const initialNewUser = {
-        username: '',
-        phoneNumber: '',
-        password: ''
-    }
     ///// States /////
     const [ newUser, setNewUser ] = useState( initialNewUser );
     const { username, phoneNumber, password } = newUser;
@@ -66,7 +66,7 @@ const RegisterForm = props => {
                     <input 
                         name = "phonenumber"
                         type = "tel"
-                        value = { phonenumber }
+                        value = { phoneNumber }
                         onChange = { handleInputChange }
                         placeholder = "Phone Number"                    
                     />
