@@ -1,4 +1,5 @@
 import React from "react";
+import AddPlantForm from "./AddPlantForm";
 
 //Landing Page after Login
 //Authenticated user can Create, Update and Delete a plant object. At a minimum, each plant must have the following properties: 
@@ -16,6 +17,7 @@ const MyPlants = () => {
     return(
         <div>
             <h2>My Plants</h2>
+            <AddPlantForm />
         </div>
     )
 }

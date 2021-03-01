@@ -78,7 +78,7 @@ const RegisterForm = props => {
                     <input 
                         name = "password"
                         type = "password"
-                        value = "password"
+                        value = { password }
                         onChange = { handleInputChange }
                         placeholder = "Password"
                     />
