@@ -21,7 +21,7 @@ const initialDisabled = true;
 const EditProfileForm = () => {
 	/////////////// State ////////////////////////////
 	const [formValues, setFormValues] = useState(initialFormValues);
-	const [disabled, setDisabled] = useState(initialDisabled);
+	const [disabled, /*setDisabled*/] = useState(initialDisabled);
 	//////////////////////////////////////////////////
 
 	// On change handler
