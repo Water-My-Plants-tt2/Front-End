@@ -8,11 +8,11 @@ const initialFormValues = {
 };
 
 // Set inital form errors
-const initialFormErrors = {
+/*const initialFormErrors = {
 	username: '',
 	password: '',
 	phone_number: '',
-};
+};*/
 
 // Set Submit button to disabled
 // Form validation will change this to false when validation passes
@@ -21,7 +21,7 @@ const initialDisabled = true;
 const EditProfileForm = () => {
 	/////////////// State ////////////////////////////
 	const [formValues, setFormValues] = useState(initialFormValues);
-	const [disabled, setDisabled] = useState(initialDisabled);
+	const [disabled, /*setDisabled*/] = useState(initialDisabled);
 	//////////////////////////////////////////////////
 
 	// On change handler

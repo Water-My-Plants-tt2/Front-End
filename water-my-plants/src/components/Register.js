@@ -12,7 +12,7 @@ const initialNewUser = {
 }
 
 const RegisterForm = props => {
-    const {  } = props; // pass in shizzz here from app.js
+    //const {  } = props; // pass in shizzz here from app.js
     
     ///// States /////
     const [ newUser, setNewUser ] = useState( initialNewUser );
