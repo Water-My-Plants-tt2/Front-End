@@ -2,34 +2,33 @@ import React, { useState } from "react";
 import axios from "axios";
 import Link from "react-router-dom";
 
-
 //user can login to an authenticated session using the credentials provided at account creation / signup.
 
+///// Initial Form Values /////
+const initialExistingUser = {
+    loginUserName: "",
+    loginPassWord: ""
+}
+///// States /////
+const [ existingUser, setExistingUser ] = useState( initialExistingUser );
+const { loginUserName, loginPassWord } = existingUser;
 
-const Login = ( props ) => {
+const LoginForm = ( props ) => {
 
-    const {  } = props;
-
-    const initialExistingUser = {
-        loginUserName: "",
-        loginPassWord: ""
-    }
-
-    const [ existingUser, setExistingUser ] = useState( initialExistingUser );
-    const { loginUserName, loginPassWord } = existingUser;
+    const {  } = props; // pass in yo props
 
     const userLogin = ( user ) => {
         axios
-            .post( '', )
-        .then(( res ) => {
+            .post( '', ) // two args
+            .then(( res ) => { // this is imcomplete, will add in info in a bit
 
-        })
-        .catch(( err ) => {
-            console.log( err, "nah, we got problems" )
-        })
+            })
+            .catch(( err ) => {
+                console.log( err, "nah, we got problems" )
+            })
     }
 
-    // Handlers:
+    ///// Handlers /////
     const handleInputChange = ( evt ) => {
         setExistingUser({
             ...existingUser,
@@ -76,8 +75,12 @@ const Login = ( props ) => {
 
                 <p className="text-link">Haven't signed up yet? <Link to = "/register" >Register here</Link></p>
             </div>
+
+            <div>
+                <p className = "text-link"><Link to = "/">Already a member, login here!</Link></p>
+            </div>
         </form>
     );
 };
 
-export default Login;
+export default LoginForm;

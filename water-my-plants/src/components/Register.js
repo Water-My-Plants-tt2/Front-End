@@ -4,18 +4,19 @@ import Link from "react-router-dom";
 
 //user can sign-up / create an account by providing a unique username, a valid mobile phoneNumber and a password.
 
-const Register = props => {
+///// Initial Form Values /////
+const {  } = props; // pass in shizzz here from app.js
 
-    const {  } = props; // pass in shizzz here from app.js
+const initialNewUser = {
+    username: '',
+    phoneNumber: '',
+    password: ''
+}
+///// States /////
+const [ newUser, setNewUser ] = useState( initialNewUser );
+const { username, phoneNumber, password } = newUser;
 
-    const initialNewUser = {
-        username: '',
-        phoneNumber: '',
-        password: ''
-    }
-
-    const [ newUser, setNewUser ] = useState( initialNewUser );
-    const { username, phoneNumber, password } = newUser;
+const RegisterForm = props => {
 
     const userSignUp = ( newUser ) => {
         axios
@@ -27,7 +28,7 @@ const Register = props => {
                 console.log( err, "here's your error!" );
             })
     }
-    // handlers
+    ///// Handlers ///// 
     const handleInputChange = (evt) => {
         setNewUser({ ...newUser, [ evt.target.id ]: evt.target.value })
     }
@@ -43,7 +44,6 @@ const Register = props => {
     return(
         <form>
             <div className = "form-header">
-                <p className = "text-link"><Link to = "/">Already a member, login here!</Link></p>
                 <h1>---Register---</h1>
                 <p>Only moments away to using our App</p>
                 <br/>
@@ -88,7 +88,13 @@ const Register = props => {
                 type = "submit"
                 onClick = { handleSubmitForm }>Register</button>
 
+            <div>
+                <p className = "text-link"><Link to = "/login"> Already have an account, click here</Link>
+                </p>
+            </div>
             
         </form>
     )
 }
+
+export default RegisterForm;
