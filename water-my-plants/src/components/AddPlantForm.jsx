@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { Avatar, Button, Grid, Paper, TextField } from '@material-ui/core';
+import LocalFloristIcon from '@material-ui/icons/LocalFlorist';
 
 // Set initial form values
 const initialFormValues = {
@@ -47,48 +49,87 @@ const AddPlantForm = () => {
 		);
 	};
 
-	return (
-		<div className='form-container' onSubmit={onSubmit}>
-			<form>
-				<h2>Add A Plant</h2>
+	const paperStyle = {
+		padding: 20,
+		height: '315px',
+		width: 250,
+		margin: '20px auto',
+	};
 
-				<label>
-					Plant Nickname
-					<input
-						type='text'
+	const avatarStyle = { backgroundColor: '#A9D884' };
+
+	const inputStyle = {
+		margin: '5px auto',
+	};
+
+	const submitBtnStyle = {
+		marginTop: '10px',
+		backgroundColor: '#A9D884',
+	};
+
+	return (
+		<Grid>
+			<Paper elevation={10} style={paperStyle}>
+				<Grid align='center'>
+					<Avatar style={avatarStyle}>
+						<LocalFloristIcon />
+					</Avatar>
+					<h2>Add A Plant</h2>
+				</Grid>
+
+				<form onSubmit={onSubmit}>
+					<TextField
+						style={inputStyle}
+						label='Plant Nickname'
+						placeholder='Enter Plant Nickname'
+						variant='outlined'
+						size='small'
+						fullWidth
+						required
 						name='nickname'
 						value={formValues.nickname}
 						onChange={onChange}
 					/>
-				</label>
 
-				<label>
-					Plant Species
-					<input
-						type='text'
+					<TextField
+						style={inputStyle}
+						label='Plant Species'
+						placeholder='Enter Plant Species'
+						variant='outlined'
+						size='small'
+						fullWidth
+						required
 						name='species'
 						value={formValues.species}
 						onChange={onChange}
 					/>
-				</label>
 
-				<label>
-					Water Frequency
-					<input
-						type='text'
+					<TextField
+						style={inputStyle}
+						label='Water Frequency'
+						placeholder='Enter Water Frequency'
+						variant='outlined'
+						size='small'
+						fullWidth
+						required
 						name='h2oFrequency'
 						value={formValues.h2oFrequency}
 						onChange={onChange}
 					/>
-				</label>
 
-				<div className='btn'>
-					<button disabled={disabled} type='submit'>
+					<Button
+						style={submitBtnStyle}
+						type='submit'
+						color='primary'
+						variant='contained'
+						fullWidth
+						disabled={disabled}
+					>
 						Submit
-					</button>
-				</div>
-			</form>
-		</div>
+					</Button>
+				</form>
+			</Paper>
+		</Grid>
 	);
 };
 
