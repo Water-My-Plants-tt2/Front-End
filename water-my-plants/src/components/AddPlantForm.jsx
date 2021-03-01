@@ -8,11 +8,11 @@ const initialFormValues = {
 };
 
 // Set inital form errors
-const initialFormErrors = {
+/*const initialFormErrors = {
 	nickname: '',
 	species: '',
 	h2oFrequency: '',
-};
+};*/
 
 // Set Submit button to disabled
 // Form validation will change this to false when validation passes
