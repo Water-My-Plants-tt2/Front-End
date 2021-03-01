@@ -1,16 +1,16 @@
 import React, { useState } from "react";
 import axios from "axios";
-import Link from "react-router-dom";
+import { Link } from "react-router-dom";
 
 //user can login to an authenticated session using the credentials provided at account creation / signup.
+///// Initial Form Values /////
+const initialExistingUser = {
+    loginUserName: "",
+    loginPassWord: ""
+}
 
 const LoginForm = ( props ) => {
     
-    ///// Initial Form Values /////
-    const initialExistingUser = {
-        loginUserName: "",
-        loginPassWord: ""
-    }
     ///// States /////
     const [ existingUser, setExistingUser ] = useState( initialExistingUser );
     const { loginUserName, loginPassWord } = existingUser;
@@ -20,7 +20,7 @@ const LoginForm = ( props ) => {
     const userLogin = ( user ) => {
         axios
             .post( '', ) // two args
-            .then(( res ) => { // this is imcomplete, will add in info in a bit
+            .then(( res ) => { // this is incomplete, will add in info in a bit
 
             })
             .catch(( err ) => {
