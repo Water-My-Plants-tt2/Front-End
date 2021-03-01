@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-
+import { Avatar, Button, Grid, Paper, TextField } from '@material-ui/core';
+import PersonIcon from '@material-ui/icons/Person';
 // Set initial form values
 const initialFormValues = {
 	username: '',
@@ -20,9 +21,10 @@ const initialDisabled = true;
 
 const EditProfileForm = () => {
 	/////////////// State ////////////////////////////
+	const [disabled /*setDisabled*/] = useState(initialDisabled);
 	const [formValues, setFormValues] = useState(initialFormValues);
-	const [disabled, /*setDisabled*/] = useState(initialDisabled);
 	//////////////////////////////////////////////////
+	const { username, phone_number, password } = formValues;
 
 	// On change handler
 	const onChange = (e) => {
@@ -43,52 +45,89 @@ const EditProfileForm = () => {
 		e.preventDefault();
 		// For testing - Form values are passed to state
 		console.log(
-			`Username: ${formValues.username}, Phone Number: ${formValues.phone_number}, Password: ${formValues.password}`
+			`Username: ${username}, Phone Number: ${phone_number}, Password: ${password}`
 		);
 	};
 
+	const paperStyle = {
+		padding: 20,
+		height: '315px',
+		width: 250,
+		margin: '20px auto',
+	};
+
+	const avatarStyle = { backgroundColor: '#A9D884' };
+
+	const inputStyle = {
+		margin: '5px auto',
+	};
+
+	const submitBtnStyle = {
+		marginTop: '10px',
+		backgroundColor: '#A9D884',
+	};
+
 	return (
-		<div className='form-container' onSubmit={onSubmit}>
-			<form>
-				<h2>Edit Profile</h2>
+		<Grid>
+			<Paper elevation={10} style={paperStyle}>
+				<Grid align='center'>
+					<Avatar style={avatarStyle}>
+						<PersonIcon />
+					</Avatar>
+					<h2>Edit Profile</h2>
+				</Grid>
 
-				<label>
-					Username
-					<input
-						type='text'
+				<form onSubmit={onSubmit}>
+					<TextField
+						style={inputStyle}
+						label='Update Username'
+						placeholder='Update Username'
+						variant='outlined'
+						size='small'
+						fullWidth
 						name='username'
-						value={formValues.username}
+						value={username}
 						onChange={onChange}
 					/>
-				</label>
 
-				<label>
-					Phone Number
-					<input
-						type='text'
+					<TextField
+						style={inputStyle}
+						label='Update Phone number'
+						placeholder='Update Phone Number'
+						variant='outlined'
+						size='small'
+						fullWidth
 						name='phone_number'
-						value={formValues.phone_number}
+						value={phone_number}
 						onChange={onChange}
 					/>
-				</label>
 
-				<label>
-					Password
-					<input
-						type='password'
+					<TextField
+						style={inputStyle}
+						label='Update Password'
+						placeholder='Update Password'
+						variant='outlined'
+						size='small'
+						fullWidth
 						name='password'
-						value={formValues.password}
+						value={password}
+						type='password'
 						onChange={onChange}
 					/>
-				</label>
 
-				<div className='btn'>
-					<button disabled={disabled} type='submit'>
+					<Button
+						style={submitBtnStyle}
+						type='submit'
+						color='primary'
+						variant='contained'
+						fullWidth
+						disabled={disabled}
+					>
 						Submit
-					</button>
-				</div>
-			</form>
-		</div>
+					</Button>
+				</form>
+			</Paper>
+		</Grid>
 	);
 };
 
