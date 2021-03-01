@@ -15,7 +15,7 @@ const MyPlants = () => {
 
     return(
         <div>
-
+            <h2>My Plants</h2>
         </div>
     )
 }

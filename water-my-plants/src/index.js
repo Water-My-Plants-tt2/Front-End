@@ -3,11 +3,25 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { BrowserRouter as Router, Route, Switch, NavLink } from "react-router-dom";
+
+import Login from "./components/Login";
+import MyPlants from "./components/MyPlants";
+import EditProfile from "./components/EditProfile";
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+    <Router>
+      <App />
+      <NavLink to="/login">Login</NavLink>
+      <NavLink to="/plants">Plants</NavLink>
+      <NavLink to="/profile">Profile</NavLink>
+      
+      <Switch>
+        <Route path="/login" component={Login} />
+        <Route path="/plants" component={MyPlants} />
+        <Route path="/profile" component={EditProfile} />
+      </Switch>
+    </Router>,
   document.getElementById('root')
 );
 
