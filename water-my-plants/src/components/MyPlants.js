@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
-// import axios from 'axios';
+import { axiosWithAuth } from '../utils/axios';
 import AddPlantForm from './AddPlantForm';
+import UserPlantCard from './UserPlantCard';
 
 //Landing Page after Login
 //Authenticated user can Create, Update and Delete a plant object. At a minimum, each plant must have the following properties:
@@ -26,6 +27,14 @@ const initialFormErrors = {
 	h2oFrequency: '',
 };
 
+const initialPlants = [
+	{
+		nickname: 'Test Plant',
+		species: 'Plantenstein',
+		h2oFrequency: 'Often',
+	},
+];
+
 // Set Submit button to disabled
 // Form validation will change this to false when validation passes
 const initialDisabled = false;
@@ -34,29 +43,43 @@ const initialDisabled = false;
 const MyPlants = () => {
 	const [formValues, setFormValues] = useState(initialFormValues);
 	const [formErrors /*setFormErrors*/] = useState(initialFormErrors);
-	// const [plants, setPlants] = useState(initialPlants);
+	const [plants, setPlants] = useState(initialPlants);
 	const [disabled /*setDisabled*/] = useState(initialDisabled);
 
 	const getPlants = () => {
-		// axios
-		// 	.get()
-		// 	.then()
-		// 	.catch((err) => {
-		// 		console.log(err);
-		// 	});
+		axiosWithAuth()
+			.get('/plants/9')
+			.then((res) => {
+				const data = res.data;
+				console.log(data);
+			})
+			.catch((err) => {
+				console.log(err);
+			});
 		console.log('useEffect is working');
 	};
 
 	const postNewPlant = (newPlant) => {
-		// axios
-		// 	.get()
-		// 	.then()
-		// 	.catch((err) => {
-		// 		console.log(err);
-		// 	});
+		axiosWithAuth()
+			.post('/plants/9', newPlant)
+			.then((res) => {
+				setPlants([res.data, ...plants]);
+			})
+			.catch((err) => {
+				console.log(err);
+			});
 		console.log(newPlant);
 		setFormValues(initialFormValues);
 	};
+
+	// const editPlant = () => {
+	// 	axiosWithAuth()
+	// 		.put()
+	// 		.then()
+	// 		.catch((err) => {
+	// 			console.log(err);
+	// 		});
+	// };
 
 	const inputChange = (name, value) => {
 		setFormValues({ ...formValues, [name]: value });
@@ -73,7 +96,7 @@ const MyPlants = () => {
 
 	useEffect(() => {
 		getPlants();
-	}, []);
+	}, [plants]);
 
 	useEffect(() => {
 		console.log('Form values are changing');
@@ -91,6 +114,21 @@ const MyPlants = () => {
 				disabled={disabled}
 				errors={formErrors}
 			/>
+
+			{plants.length === 0 ? (
+				<h2>Add Your First Plant</h2>
+			) : (
+				plants.map((plant) => {
+					return (
+						<UserPlantCard
+							key={plant.name + 1}
+							name={plant.nickname}
+							species={plant.species}
+							h2o={plant.h2oFrequency}
+						/>
+					);
+				})
+			)}
 		</div>
 	);
 };
