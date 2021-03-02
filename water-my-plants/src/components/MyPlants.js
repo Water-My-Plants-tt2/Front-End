@@ -76,7 +76,6 @@ const MyPlants = () => {
 	}, []);
 
 	useEffect(() => {
-		// setDisabled checks
 		console.log('Form values are changing');
 	}, [formValues]);
 
