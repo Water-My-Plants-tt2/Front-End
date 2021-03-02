@@ -11,6 +11,10 @@ const paperStyle = {
 const UserPlantCard = (props) => {
 	const { name, species, h2o } = props;
 
+	const editBtnStyle = {
+		backgroundColor: '#A9D884',
+	};
+
 	return (
 		<Grid>
 			<Paper elevation={3} style={paperStyle}>
@@ -20,12 +24,25 @@ const UserPlantCard = (props) => {
 					<h3>Species: {species}</h3>
 					<h3>Water Frequency: {h2o}</h3>
 				</Grid>
-				<Button type='submit' color='primary' variant='contained'>
-					Edit
-				</Button>
-				<Button type='submit' color='secondary' variant='contained'>
-					Delete
-				</Button>
+				<Grid className='card-btn-grid'>
+					<Button
+						size='small'
+						style={editBtnStyle}
+						type='submit'
+						color='primary'
+						variant='contained'
+					>
+						Edit
+					</Button>
+					<Button
+						size='small'
+						type='submit'
+						color='secondary'
+						variant='contained'
+					>
+						Delete
+					</Button>
+				</Grid>
 			</Paper>
 		</Grid>
 	);

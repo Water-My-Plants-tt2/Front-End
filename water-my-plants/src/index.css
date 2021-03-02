@@ -12,8 +12,14 @@ code {
 		monospace;
 }
 
-/* Temporary CSS For Plant Card */
+/* CSS For Plant Card */
 .plantCard {
 	width: 200px;
 	height: 200px;
+	border-radius: 3px;
+}
+
+.card-btn-grid {
+	display: flex;
+	justify-content: space-between;
 }

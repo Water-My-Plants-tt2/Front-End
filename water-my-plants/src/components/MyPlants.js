@@ -33,6 +33,11 @@ const initialPlants = [
 		species: 'Plantenstein',
 		h2oFrequency: 'Often',
 	},
+	{
+		nickname: 'Test Plant 2',
+		species: 'Plantenstein2',
+		h2oFrequency: 'Oftener',
+	},
 ];
 
 // Set Submit button to disabled
