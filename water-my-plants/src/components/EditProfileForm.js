@@ -1,29 +1,8 @@
 import React from 'react';
 import { Avatar, Button, Grid, Paper, TextField } from '@material-ui/core';
 import PersonIcon from '@material-ui/icons/Person';
-// Set initial form values
-// const initialFormValues = {
-// 	username: '',
-// 	password: '',
-// 	phone_number: '',
-// };
-
-// Set inital form errors
-/*const initialFormErrors = {
-	username: '',
-	password: '',
-	phone_number: '',
-};*/
-
-// Set Submit button to disabled
-// Form validation will change this to false when validation passes
-// const initialDisabled = true;
 
 const EditProfileForm = (props) => {
-	/////////////// State ////////////////////////////
-	// const [disabled /*setDisabled*/] = useState(initialDisabled);
-	// const [formValues, setFormValues] = useState(initialFormValues);
-	//////////////////////////////////////////////////
 	const { values, change, submit, disabled } = props;
 
 	// On change handler
@@ -34,11 +13,6 @@ const EditProfileForm = (props) => {
 		// In case handlers are moved
 		change(name, valueToUse);
 	};
-
-	// Added this in case the handlers are moved to their own components
-	// const change = (name, value) => {
-	// 	setFormValues({ ...formValues, [name]: value });
-	// };
 
 	// On submit handler
 	const onSubmit = (e) => {
