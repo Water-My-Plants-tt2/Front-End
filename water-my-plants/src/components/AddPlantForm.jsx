@@ -1,52 +1,26 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Avatar, Button, Grid, Paper, TextField } from '@material-ui/core';
 import LocalFloristIcon from '@material-ui/icons/LocalFlorist';
 
-// Set initial form values
-const initialFormValues = {
-	nickname: '',
-	species: '',
-	h2oFrequency: '',
-};
-
-// Set inital form errors
-/*const initialFormErrors = {
-	nickname: '',
-	species: '',
-	h2oFrequency: '',
-};*/
-
-// Set Submit button to disabled
-// Form validation will change this to false when validation passes
-const initialDisabled = true;
-
-const AddPlantForm = () => {
-	/////////////// State ////////////////////////////
-	const [formValues, setFormValues] = useState(initialFormValues);
-	const [disabled, /*setDisabled*/] = useState(initialDisabled);
-	//////////////////////////////////////////////////
-
-	// On change handler
-	const onChange = (e) => {
-		const { name, value, type, checked } = e.target;
-		// In case a checkbox is added - may not need
-		const valueToUse = type === 'checkbox' ? checked : value;
-		// In case handlers are moved
-		change(name, valueToUse);
-	};
-
-	// Added this in case the handlers are moved to their own components
-	const change = (name, value) => {
-		setFormValues({ ...formValues, [name]: value });
-	};
+const AddPlantForm = (props) => {
+	const { values, change, submit, disabled } = props;
 
 	// On submit handler
 	const onSubmit = (e) => {
 		e.preventDefault();
 		// For testing - Form values are passed to state
 		console.log(
-			`Nickname: ${formValues.nickname}, Species: ${formValues.species}, Water: ${formValues.h2oFrequency}`
+			`Nickname: ${values.nickname}, Species: ${values.species}, Water: ${values.h2oFrequency}`
 		);
+		submit();
+	};
+
+	// On change handler
+	const onChange = (e) => {
+		const { name, value, type, checked } = e.target;
+		// In case a checkbox is added - may not need
+		const valueToUse = type === 'checkbox' ? checked : value;
+		change(name, valueToUse);
 	};
 
 	const paperStyle = {
@@ -87,7 +61,7 @@ const AddPlantForm = () => {
 						fullWidth
 						required
 						name='nickname'
-						value={formValues.nickname}
+						value={values.nickname}
 						onChange={onChange}
 					/>
 
@@ -100,7 +74,7 @@ const AddPlantForm = () => {
 						fullWidth
 						required
 						name='species'
-						value={formValues.species}
+						value={values.species}
 						onChange={onChange}
 					/>
 
@@ -113,7 +87,7 @@ const AddPlantForm = () => {
 						fullWidth
 						required
 						name='h2oFrequency'
-						value={formValues.h2oFrequency}
+						value={values.h2oFrequency}
 						onChange={onChange}
 					/>
 
