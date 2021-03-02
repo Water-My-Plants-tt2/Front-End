@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import axios from "axios";
-import { Link } from "react-router-dom";
+import {axiosWithAuth} from "../utils/axios";
+import { Link, useHistory } from "react-router-dom";
 
 //user can login to an authenticated session using the credentials provided at account creation / signup.
 ///// Initial Form Values /////
@@ -16,21 +16,24 @@ const LoginForm = ( props ) => {
     const { username, password } = existingUser;
 
     //const {  } = props; // pass in yo props
+    const history = useHistory();
 
     const userLogin = ( user ) => {
-        axios
-            .post( 'https://greenthumbs-tt2.herokuapp.com/api/', ) // two args
-            .then(( res ) => { // this is incomplete, will add in info in a bit
+        axiosWithAuth()
+            .post('/auth/login', user) // two args
+            .then( res  => { // this is incomplete, will add in info in a bit
+                console.log(res)
+                localStorage.setItem("token", res.data.token)
+                history.push("/plants")
 
             })
             .catch(( err ) => {
-                console.log( err, "nah, we got problems" )
+                console.log("Error:", err.response.status, err.response.statusText)
             })
     }
 
     ///// Handlers /////
     const handleInputChange = ( evt ) => {
-        console.log(evt.target)
         setExistingUser({
             ...existingUser,
             [evt.target.name]: evt.target.value
@@ -48,7 +51,7 @@ const LoginForm = ( props ) => {
     return (
         <form>
             <div className = "form-header">
-                <h2>Login/Register</h2>
+                <h2>Login</h2>
             </div>
 
             <div className = "form-inputs">
