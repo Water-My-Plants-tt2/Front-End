@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import {axiosWithAuth} from "../utils/axios";
 import { Link, useHistory } from "react-router-dom";
+import { Form } from "./Styling";
 
 //user can sign-up / create an account by providing a unique username, a valid mobile phoneNumber and a password.
 
@@ -11,7 +12,7 @@ const initialNewUser = {
     password: ''
 }
 
-const RegisterForm = props => {
+const RegisterForm = () => {
     //const {  } = props; // pass in shizzz here from app.js
     const history = useHistory();
     
@@ -44,9 +45,9 @@ const RegisterForm = props => {
     }
 
     return(
-        <form>
+        <Form>
             <div className = "form-header">
-                <h1>---Register---</h1>
+                <h2>Register</h2>
                 <p>Fill out your info below</p>
                 <br/>
             </div>
@@ -88,14 +89,16 @@ const RegisterForm = props => {
 
             <button
                 type = "submit"
-                onClick = { handleSubmitForm }>Register</button>
+                onClick = { handleSubmitForm }
+                // disabled = {  }
+                >Register</button>
 
             <div>
-                <p className = "text-link">Already have an account, <Link to = "/login"> click here</Link>
+                <p className = "text-link">Already have an account, <Link to = "/login"> click here!</Link>
                 </p>
             </div>
             
-        </form>
+        </Form>
     )
 }
 
