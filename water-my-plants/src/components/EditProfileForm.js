@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Avatar, Button, Grid, Paper, TextField } from '@material-ui/core';
 import PersonIcon from '@material-ui/icons/Person';
 // Set initial form values
-const initialFormValues = {
-	username: '',
-	password: '',
-	phone_number: '',
-};
+// const initialFormValues = {
+// 	username: '',
+// 	password: '',
+// 	phone_number: '',
+// };
 
 // Set inital form errors
 /*const initialFormErrors = {
@@ -17,14 +17,14 @@ const initialFormValues = {
 
 // Set Submit button to disabled
 // Form validation will change this to false when validation passes
-const initialDisabled = true;
+// const initialDisabled = true;
 
-const EditProfileForm = () => {
+const EditProfileForm = (props) => {
 	/////////////// State ////////////////////////////
-	const [disabled /*setDisabled*/] = useState(initialDisabled);
-	const [formValues, setFormValues] = useState(initialFormValues);
+	// const [disabled /*setDisabled*/] = useState(initialDisabled);
+	// const [formValues, setFormValues] = useState(initialFormValues);
 	//////////////////////////////////////////////////
-	const { username, phone_number, password } = formValues;
+	const { values, change, submit, disabled } = props;
 
 	// On change handler
 	const onChange = (e) => {
@@ -36,17 +36,18 @@ const EditProfileForm = () => {
 	};
 
 	// Added this in case the handlers are moved to their own components
-	const change = (name, value) => {
-		setFormValues({ ...formValues, [name]: value });
-	};
+	// const change = (name, value) => {
+	// 	setFormValues({ ...formValues, [name]: value });
+	// };
 
 	// On submit handler
 	const onSubmit = (e) => {
 		e.preventDefault();
 		// For testing - Form values are passed to state
 		console.log(
-			`Username: ${username}, Phone Number: ${phone_number}, Password: ${password}`
+			`Username: ${values.username}, Phone Number: ${values.phone_number}, Password: ${values.password}`
 		);
+		submit();
 	};
 
 	const paperStyle = {
@@ -86,7 +87,7 @@ const EditProfileForm = () => {
 						size='small'
 						fullWidth
 						name='username'
-						value={username}
+						value={values.username}
 						onChange={onChange}
 					/>
 
@@ -98,7 +99,7 @@ const EditProfileForm = () => {
 						size='small'
 						fullWidth
 						name='phone_number'
-						value={phone_number}
+						value={values.phone_number}
 						onChange={onChange}
 					/>
 
@@ -110,7 +111,7 @@ const EditProfileForm = () => {
 						size='small'
 						fullWidth
 						name='password'
-						value={password}
+						value={values.password}
 						type='password'
 						onChange={onChange}
 					/>
