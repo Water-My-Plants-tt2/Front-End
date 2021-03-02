@@ -126,7 +126,7 @@ const MyPlants = () => {
 				plants.map((plant) => {
 					return (
 						<UserPlantCard
-							key={plant.name + 1}
+							key={plant.nickname}
 							name={plant.nickname}
 							species={plant.species}
 							h2o={plant.h2oFrequency}
