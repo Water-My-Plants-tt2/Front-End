@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import {axiosWithAuth} from "../utils/axios";
 import { Link, useHistory } from "react-router-dom";
+import { Form } from "./Styling";
 
 //user can login to an authenticated session using the credentials provided at account creation / signup.
 ///// Initial Form Values /////
@@ -12,10 +13,10 @@ const initialExistingUser = {
 const LoginForm = ( props ) => {
     
     ///// States /////
+    // const { values, submit, change, disabled, update } = props; // pass in yo props
     const [ existingUser, setExistingUser ] = useState( initialExistingUser );
     const { username, password } = existingUser;
 
-    //const {  } = props; // pass in yo props
     const history = useHistory();
 
     const userLogin = ( user ) => {
@@ -42,6 +43,7 @@ const LoginForm = ( props ) => {
 
     const handleSubmitForm = ( evt ) => {
         evt.preventDefault();
+        // submit();
         if( username && password ){
             userLogin( existingUser );
             setExistingUser( initialExistingUser );
@@ -49,7 +51,7 @@ const LoginForm = ( props ) => {
     }
 
     return (
-        <form>
+        <Form>
             <div className = "form-header">
                 <h2>Login</h2>
             </div>
@@ -77,11 +79,13 @@ const LoginForm = ( props ) => {
             <div className = "form-inputs">
                 <button
                     type = "submit"
-                    onClick = { handleSubmitForm }>Login</button>
+                    onClick = { handleSubmitForm }
+                    // disabled = { values.username || values.password } // need to modify this to stay disabled until the input fields are complete
+                    >Login</button>
 
                 <p className="text-link">Haven't signed up yet? <Link to = "/register" >Register here</Link></p>
             </div>
-        </form>
+        </Form>
     );
 };
 
