@@ -10,7 +10,6 @@ const EditProfileForm = (props) => {
 		const { name, value, type, checked } = e.target;
 		// In case a checkbox is added - may not need
 		const valueToUse = type === 'checkbox' ? checked : value;
-		// In case handlers are moved
 		change(name, valueToUse);
 	};
 
