@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { axiosWithAuth } from '../utils/axios';
+import { Avatar, Grid } from '@material-ui/core';
+import AddIcon from '@material-ui/icons/Add';
 import AddPlantForm from './AddPlantForm';
 import UserPlantCard from './UserPlantCard';
 
@@ -50,6 +52,8 @@ const MyPlants = () => {
 	const [formErrors /*setFormErrors*/] = useState(initialFormErrors);
 	const [plants, setPlants] = useState(initialPlants);
 	const [disabled, setDisabled] = useState(initialDisabled);
+
+	const [showAddForm, setShowAddForm] = useState(false);
 
 	const getPlants = () => {
 		axiosWithAuth()
@@ -109,21 +113,47 @@ const MyPlants = () => {
 			: setDisabled(false);
 	}, [formValues]);
 
+	const avatarStyle = {
+		backgroundColor: '#A9D884',
+		cursor: 'pointer',
+	};
+
+	const showAddPlantForm = () => {
+		// Toggle form hidden
+		setShowAddForm(true);
+		// Toggle add-plant hidden
+		console.log('click');
+	};
+
+	const cancelClick = () => {
+		setShowAddForm(false);
+	};
+
 	return (
 		<div className='container'>
 			<header>
 				<h2>My Plants</h2>
 			</header>
-			<AddPlantForm
-				values={formValues}
-				change={inputChange}
-				submit={formSubmit}
-				disabled={disabled}
-				errors={formErrors}
-			/>
+			{showAddForm ? (
+				<AddPlantForm
+					values={formValues}
+					change={inputChange}
+					submit={formSubmit}
+					disabled={disabled}
+					errors={formErrors}
+					cancel={cancelClick}
+				/>
+			) : null}
 
 			{plants.length === 0 ? (
-				<h2>Add Your First Plant</h2>
+				<div className='add-plant'>
+					<Grid align='center'>
+						<h2>Add Your First Plant</h2>
+						<Avatar style={avatarStyle}>
+							<AddIcon onClick={showAddPlantForm} />
+						</Avatar>
+					</Grid>
+				</div>
 			) : (
 				plants.map((plant) => {
 					return (
