@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import axios from "axios";
-import { Link } from "react-router-dom";
+import {axiosWithAuth} from "../utils/axios";
+import { Link, useHistory } from "react-router-dom";
 
 //user can sign-up / create an account by providing a unique username, a valid mobile phoneNumber and a password.
 
@@ -13,19 +13,21 @@ const initialNewUser = {
 
 const RegisterForm = props => {
     //const {  } = props; // pass in shizzz here from app.js
+    const history = useHistory();
     
     ///// States /////
     const [ newUser, setNewUser ] = useState( initialNewUser );
     const { username, phone_number, password } = newUser;
     
     const userSignUp = ( newUser ) => {
-        axios
-            .post('', newUser )
+        axiosWithAuth()
+            .post('/auth/register', newUser )
             .then(( res ) => {
-
+                console.log(res)
+                history.push("/login");
             })
             .catch(( err ) => {
-                console.log( err, "here's your error!" );
+                console.log("Error:", err.response.status, err.response.statusText);
             })
     }
     ///// Handlers ///// 
