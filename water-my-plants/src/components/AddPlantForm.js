@@ -8,10 +8,6 @@ const AddPlantForm = (props) => {
 	// On submit handler
 	const onSubmit = (e) => {
 		e.preventDefault();
-		// For testing - Form values are passed to state
-		console.log(
-			`Nickname: ${values.nickname}, Species: ${values.species}, Water: ${values.h2oFrequency}`
-		);
 		submit();
 	};
 
@@ -54,8 +50,8 @@ const AddPlantForm = (props) => {
 				<form onSubmit={onSubmit}>
 					<TextField
 						style={inputStyle}
-						label='Plant Nickname'
-						placeholder='Enter Plant Nickname'
+						label='Plant Name'
+						placeholder='Enter Plant Name'
 						variant='outlined'
 						size='small'
 						fullWidth
@@ -80,7 +76,7 @@ const AddPlantForm = (props) => {
 
 					<TextField
 						style={inputStyle}
-						label='Water Frequency'
+						label='Watering Frequency'
 						placeholder='Enter Water Frequency'
 						variant='outlined'
 						size='small'
