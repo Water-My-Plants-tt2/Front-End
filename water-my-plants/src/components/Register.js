@@ -47,12 +47,12 @@ const RegisterForm = props => {
         <form>
             <div className = "form-header">
                 <h1>---Register---</h1>
-                <p>Only moments away to using our App</p>
+                <p>Fill out your info below</p>
                 <br/>
             </div>
 
             <div className = "form-inputs">
-                <label className = "form-label">Username</label>
+                <label className = "form-label">Username:&nbsp;</label>
                     <input 
                         name = "username"
                         type = "text"
@@ -64,7 +64,7 @@ const RegisterForm = props => {
             </div>
 
             <div className = "form-inputs">
-                <label className = "form-label">Phone Number</label>
+                <label className = "form-label">Phone Number:&nbsp;</label>
                     <input 
                         name = "phone_number"
                         type = "tel"
@@ -76,7 +76,7 @@ const RegisterForm = props => {
             </div>
 
             <div className = "form-inputs">
-                <label className = "form-label">Password</label>
+                <label className = "form-label">Password:&nbsp;</label>
                     <input 
                         name = "password"
                         type = "password"
@@ -91,7 +91,7 @@ const RegisterForm = props => {
                 onClick = { handleSubmitForm }>Register</button>
 
             <div>
-                <p className = "text-link"><Link to = "/login"> Already have an account, click here</Link>
+                <p className = "text-link">Already have an account, <Link to = "/login"> click here</Link>
                 </p>
             </div>
             

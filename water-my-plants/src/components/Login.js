@@ -55,7 +55,7 @@ const LoginForm = ( props ) => {
             </div>
 
             <div className = "form-inputs">
-                <label className = "form-labels">Username</label>
+                <label className = "form-labels">Username:&nbsp;</label>
                 <input 
                     name = "username"
                     type = "text"
@@ -63,8 +63,9 @@ const LoginForm = ( props ) => {
                     onChange = { handleInputChange }
                     placeholder = "Username"    
                 />
-
-                <label className = "form-labels">Password</label>
+            </div>
+            <div className = "form-inputs">
+                <label className = "form-labels">Password:&nbsp;</label>
                 <input 
                     name = "password"
                     type = "password"
@@ -72,16 +73,13 @@ const LoginForm = ( props ) => {
                     onChange = { handleInputChange }
                     placeholder = "Password"    
                 />
-
+            </div>
+            <div className = "form-inputs">
                 <button
                     type = "submit"
                     onClick = { handleSubmitForm }>Login</button>
 
                 <p className="text-link">Haven't signed up yet? <Link to = "/register" >Register here</Link></p>
-            </div>
-
-            <div>
-                <p className = "text-link"><Link to = "/">Already a member, login here!</Link></p>
             </div>
         </form>
     );
