@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 ///// Initial Form Values /////
 const initialNewUser = {
     username: '',
-    phoneNumber: '',
+    phone_number: '',
     password: ''
 }
 
@@ -16,7 +16,7 @@ const RegisterForm = props => {
     
     ///// States /////
     const [ newUser, setNewUser ] = useState( initialNewUser );
-    const { username, phoneNumber, password } = newUser;
+    const { username, phone_number, password } = newUser;
     
     const userSignUp = ( newUser ) => {
         axios
@@ -30,12 +30,12 @@ const RegisterForm = props => {
     }
     ///// Handlers ///// 
     const handleInputChange = (evt) => {
-        setNewUser({ ...newUser, [ evt.target.id ]: evt.target.value })
+        setNewUser({ ...newUser, [ evt.target.name ]: evt.target.value })
     }
 
     const handleSubmitForm = (evt) => {
-        if( username && phoneNumber && password ){
-            evt.preventDefault();
+        evt.preventDefault();
+        if( username && phone_number && password ){
             userSignUp( newUser );
             setNewUser( initialNewUser);
         }
@@ -64,9 +64,9 @@ const RegisterForm = props => {
             <div className = "form-inputs">
                 <label className = "form-label">Phone Number</label>
                     <input 
-                        name = "phonenumber"
+                        name = "phone_number"
                         type = "tel"
-                        value = { phoneNumber }
+                        value = { phone_number }
                         onChange = { handleInputChange }
                         placeholder = "Phone Number"                    
                     />

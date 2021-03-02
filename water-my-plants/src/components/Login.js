@@ -5,21 +5,21 @@ import { Link } from "react-router-dom";
 //user can login to an authenticated session using the credentials provided at account creation / signup.
 ///// Initial Form Values /////
 const initialExistingUser = {
-    loginUserName: "",
-    loginPassWord: ""
+    username: "",
+    password: ""
 }
 
 const LoginForm = ( props ) => {
     
     ///// States /////
     const [ existingUser, setExistingUser ] = useState( initialExistingUser );
-    const { loginUserName, loginPassWord } = existingUser;
+    const { username, password } = existingUser;
 
     //const {  } = props; // pass in yo props
 
     const userLogin = ( user ) => {
         axios
-            .post( '', ) // two args
+            .post( 'https://greenthumbs-tt2.herokuapp.com/api/', ) // two args
             .then(( res ) => { // this is incomplete, will add in info in a bit
 
             })
@@ -30,15 +30,16 @@ const LoginForm = ( props ) => {
 
     ///// Handlers /////
     const handleInputChange = ( evt ) => {
+        console.log(evt.target)
         setExistingUser({
             ...existingUser,
-            [evt.target.id]: evt.target.value
+            [evt.target.name]: evt.target.value
         })
     }
 
     const handleSubmitForm = ( evt ) => {
-        if( loginUserName && loginPassWord ){
-            evt.preventDefault();
+        evt.preventDefault();
+        if( username && password ){
             userLogin( existingUser );
             setExistingUser( initialExistingUser );
         }
@@ -53,18 +54,18 @@ const LoginForm = ( props ) => {
             <div className = "form-inputs">
                 <label className = "form-labels">Username</label>
                 <input 
-                    name = "Username"
+                    name = "username"
                     type = "text"
-                    value = { loginUserName }
+                    value = { username }
                     onChange = { handleInputChange }
                     placeholder = "Username"    
                 />
 
                 <label className = "form-labels">Password</label>
                 <input 
-                    name = "Password"
+                    name = "password"
                     type = "password"
-                    value = { loginPassWord }
+                    value = { password }
                     onChange = { handleInputChange }
                     placeholder = "Password"    
                 />
