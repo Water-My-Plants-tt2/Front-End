@@ -4,6 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter as Router, Route, Switch, NavLink } from "react-router-dom";
+import PrivateRoute from "./utils/PrivateRoute";
 
 import Login from "./components/Login";
 import RegisterForm from "./components/Register"
@@ -21,8 +22,8 @@ ReactDOM.render(
       <Switch>
         <Route path="/login" component={Login} />
         <Route path="/register" component={RegisterForm} />
-        <Route path="/plants" component={MyPlants} />
-        <Route path="/profile" component={EditProfile} />
+        <PrivateRoute path="/plants" component={MyPlants} />
+        <PrivateRoute path="/profile" component={EditProfile} />
       </Switch>
     </Router>,
   document.getElementById('root')
