@@ -28,28 +28,28 @@ const initialFormErrors = {
 };
 
 const initialPlants = [
-	{
-		nickname: 'Test Plant',
-		species: 'Plantenstein',
-		h2oFrequency: 'Often',
-	},
-	{
-		nickname: 'Test Plant 2',
-		species: 'Plantenstein2',
-		h2oFrequency: 'Oftener',
-	},
+	// {
+	// 	nickname: 'Test Plant',
+	// 	species: 'Plantenstein',
+	// 	h2oFrequency: 'Often',
+	// },
+	// {
+	// 	nickname: 'Test Plant 2',
+	// 	species: 'Plantenstein2',
+	// 	h2oFrequency: 'Oftener',
+	// },
 ];
 
 // Set Submit button to disabled
 // Form validation will change this to false when validation passes
-const initialDisabled = false;
+const initialDisabled = true;
 // const initialPlants = [];
 
 const MyPlants = () => {
 	const [formValues, setFormValues] = useState(initialFormValues);
 	const [formErrors /*setFormErrors*/] = useState(initialFormErrors);
 	const [plants, setPlants] = useState(initialPlants);
-	const [disabled /*setDisabled*/] = useState(initialDisabled);
+	const [disabled, setDisabled] = useState(initialDisabled);
 
 	const getPlants = () => {
 		axiosWithAuth()
@@ -104,7 +104,9 @@ const MyPlants = () => {
 	}, [plants]);
 
 	useEffect(() => {
-		console.log('Form values are changing');
+		!formValues.species || !formValues.nickname || !formValues.h2oFrequency
+			? setDisabled(true)
+			: setDisabled(false);
 	}, [formValues]);
 
 	return (
