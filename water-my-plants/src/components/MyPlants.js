@@ -85,13 +85,18 @@ const MyPlants = () => {
 		setFormValues(initialFormValues);
 	};
 
-	const editPlantInfo = (editPlant) => {
-		// axiosWithAuth()
-		// 	.put()
-		// 	.then()
-		// 	.catch((err) => {
-		// 		console.log(err);
-		// 	});
+	const editPlantInfo = (editPlant, id) => {
+		axiosWithAuth()
+			.put(`/plants/${id}`, {
+				...editPlant,
+				user_id: userId.current,
+			})
+			.then((res) => {
+				console.log(res.data);
+			})
+			.catch((err) => {
+				console.log({ err });
+			});
 
 		console.log(editPlant);
 	};
@@ -109,17 +114,16 @@ const MyPlants = () => {
 		postNewPlant(newPlant);
 	};
 
-	const submitEditPlant = (values) => {
+	console.log(plants);
+
+	const submitEditPlant = (values, id) => {
 		const editPlant = {
 			nickname: values.nickname.trim(),
 			species: values.species.trim(),
 			h2oFrequency: values.h2oFrequency.trim(),
 		};
 
-		editPlantInfo(editPlant);
-
-		// console.log('Edit Plant');
-		// console.log(values);
+		editPlantInfo(editPlant, id);
 	};
 
 	useEffect(() => {
@@ -191,6 +195,7 @@ const MyPlants = () => {
 							values={formValues}
 							submitEditPlant={submitEditPlant}
 							cancel={cancelClick}
+							plantId={plant.plant_id}
 						/>
 					);
 				})
