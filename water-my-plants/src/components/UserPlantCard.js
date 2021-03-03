@@ -3,7 +3,7 @@ import { Button, Grid, Paper } from '@material-ui/core';
 
 const paperStyle = {
 	padding: 20,
-	height: '390px',
+	height: 'auto',
 	width: 250,
 	margin: '20px auto',
 };

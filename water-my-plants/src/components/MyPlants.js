@@ -1,8 +1,10 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { axiosWithAuth } from '../utils/axios';
-import AddPlantForm from './AddPlantForm.js';
-import UserPlantCard from './UserPlantCard.js';
 import userContext from "../contexts/UserContext";
+import { Avatar, Grid } from '@material-ui/core';
+import AddIcon from '@material-ui/icons/Add';
+import AddPlantForm from './AddPlantForm';
+import UserPlantCard from './UserPlantCard';
 
 //Landing Page after Login
 //Authenticated user can Create, Update and Delete a plant object. At a minimum, each plant must have the following properties:
@@ -29,28 +31,30 @@ const initialFormErrors = {
 };
 
 const initialPlants = [
-	{
-		nickname: 'Test Plant',
-		species: 'Plantenstein',
-		h2oFrequency: 'Often',
-	},
-	{
-		nickname: 'Test Plant 2',
-		species: 'Plantenstein2',
-		h2oFrequency: 'Oftener',
-	},
+	// {
+	// 	nickname: 'Test Plant',
+	// 	species: 'Plantenstein',
+	// 	h2oFrequency: 'Often',
+	// },
+	// {
+	// 	nickname: 'Test Plant 2',
+	// 	species: 'Plantenstein2',
+	// 	h2oFrequency: 'Oftener',
+	// },
 ];
 
 // Set Submit button to disabled
 // Form validation will change this to false when validation passes
-const initialDisabled = false;
+const initialDisabled = true;
 // const initialPlants = [];
 
 const MyPlants = () => {
 	const [formValues, setFormValues] = useState(initialFormValues);
 	const [formErrors /*setFormErrors*/] = useState(initialFormErrors);
 	const [plants, setPlants] = useState(initialPlants);
-	const [disabled /*setDisabled*/] = useState(initialDisabled);
+	const [disabled, setDisabled] = useState(initialDisabled);
+
+	const [showAddForm, setShowAddForm] = useState(false);
 
 	//contains username, id, phone_number//
 	const user = useContext(userContext);
@@ -110,24 +114,52 @@ const MyPlants = () => {
 	}, []);
 
 	useEffect(() => {
-		console.log('Form values are changing');
+		!formValues.species || !formValues.nickname || !formValues.h2oFrequency
+			? setDisabled(true)
+			: setDisabled(false);
 	}, [formValues]);
+
+	const avatarStyle = {
+		backgroundColor: '#A9D884',
+		cursor: 'pointer',
+	};
+
+	const showAddPlantForm = () => {
+		// Toggle form hidden
+		setShowAddForm(true);
+		// Toggle add-plant hidden
+		console.log('click');
+	};
+
+	const cancelClick = () => {
+		setShowAddForm(false);
+	};
 
 	return (
 		<div className='container'>
 			<header>
 				<h2>My Plants</h2>
 			</header>
-			<AddPlantForm
-				values={formValues}
-				change={inputChange}
-				submit={formSubmit}
-				disabled={disabled}
-				errors={formErrors}
-			/>
+			{showAddForm ? (
+				<AddPlantForm
+					values={formValues}
+					change={inputChange}
+					submit={formSubmit}
+					disabled={disabled}
+					errors={formErrors}
+					cancel={cancelClick}
+				/>
+			) : null}
 
 			{plants.length === 0 ? (
-				<h2>Add Your First Plant</h2>
+				<div className='add-plant'>
+					<Grid align='center'>
+						<h2>Add Your First Plant</h2>
+						<Avatar style={avatarStyle}>
+							<AddIcon onClick={showAddPlantForm} />
+						</Avatar>
+					</Grid>
+				</div>
 			) : (
 				plants.map((plant) => {
 					return (
