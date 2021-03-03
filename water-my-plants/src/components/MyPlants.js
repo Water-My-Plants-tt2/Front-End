@@ -4,7 +4,7 @@ import { Avatar, Grid } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
 import AddPlantForm from './AddPlantForm.js';
 import UserPlantCard from './UserPlantCard.js';
-import userContext from "../contexts/userContext";
+import userContext from '../contexts/userContext';
 
 //Landing Page after Login
 //Authenticated user can Create, Update and Delete a plant object. At a minimum, each plant must have the following properties:
@@ -50,7 +50,7 @@ const initialDisabled = true;
 
 const MyPlants = () => {
 	const userState = useContext(userContext);
-	console.log(userState)
+	console.log(userState);
 
 	const [formValues, setFormValues] = useState(initialFormValues);
 	const [formErrors /*setFormErrors*/] = useState(initialFormErrors);
@@ -64,7 +64,7 @@ const MyPlants = () => {
 			.get(`/plants/${userState.id}`)
 			.then((res) => {
 				const data = res.data;
-				console.log(data);
+				setPlants(data);
 			})
 			.catch((err) => {
 				console.log(err);
@@ -162,7 +162,7 @@ const MyPlants = () => {
 				plants.map((plant) => {
 					return (
 						<UserPlantCard
-							key={plant.nickname}
+							key={plant.plant_id}
 							name={plant.nickname}
 							species={plant.species}
 							h2o={plant.h2oFrequency}
