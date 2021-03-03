@@ -13,12 +13,13 @@ import Fade from '@material-ui/core/Fade';
 import LocalFloristIcon from '@material-ui/icons/LocalFlorist';
 
 const UserPlantCard = (props) => {
-	const { nickname, species, h2oFrequency, submitEditPlant } = props;
+	const { nickname, species, h2oFrequency, submitEditPlant, plantId } = props;
 
 	const initialEditValues = {
 		nickname,
 		species,
 		h2oFrequency,
+		plantId,
 	};
 
 	const [editPlantValues, setEditPlantValues] = useState(initialEditValues);
@@ -36,7 +37,7 @@ const UserPlantCard = (props) => {
 	// On submit handler
 	const onSubmit = (e) => {
 		e.preventDefault();
-		submitEditPlant(editPlantValues);
+		submitEditPlant(editPlantValues, plantId);
 		setOpen(false);
 		setEditPlantValues(initialEditValues);
 	};
