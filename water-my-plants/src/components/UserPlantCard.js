@@ -39,7 +39,8 @@ const UserPlantCard = (props) => {
 		e.preventDefault();
 		submitEditPlant(editPlantValues, plantId);
 		setOpen(false);
-		setEditPlantValues(initialEditValues);
+		setEditPlantValues(editPlantValues);
+		//
 	};
 
 	// On change handler
