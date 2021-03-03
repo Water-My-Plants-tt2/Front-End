@@ -1,8 +1,7 @@
-import React, { useContext, useState } from "react";
-import {axiosWithAuth} from "../utils/axios";
+import React, { useState } from "react";
+import { axiosWithAuth } from "../utils/axios";
 import { Link, useHistory } from "react-router-dom";
 import { Form } from "./Styling";
-import userContext from "../contexts/userContext";
 
 //user can login to an authenticated session using the credentials provided at account creation / signup.
 ///// Initial Form Values /////
@@ -12,7 +11,7 @@ const initialExistingUser = {
 }
 
 const LoginForm = ( props ) => {
-    const userState = useContext(userContext);
+    //const userState = useContext(userContext);
     
     ///// States /////
     // const { values, submit, change, disabled, update } = props; // pass in yo props
@@ -27,7 +26,7 @@ const LoginForm = ( props ) => {
             .then( res  => { 
                 console.log("POST res: ", res.data.user_id)
                 localStorage.setItem("token", res.data.token)
-                userState.id = res.data.user_id;
+                localStorage.setItem("id", res.data.user_id);
                 history.push("/plants")
             })
             .catch(( err ) => {

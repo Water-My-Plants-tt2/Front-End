@@ -1,10 +1,9 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { axiosWithAuth } from '../utils/axios';
 import { Avatar, Grid } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
 import AddPlantForm from './AddPlantForm.js';
 import UserPlantCard from './UserPlantCard.js';
-import userContext from '../contexts/userContext';
 
 //Landing Page after Login
 //Authenticated user can Create, Update and Delete a plant object. At a minimum, each plant must have the following properties:
@@ -49,8 +48,7 @@ const initialDisabled = true;
 // const initialPlants = [];
 
 const MyPlants = () => {
-	const userState = useContext(userContext);
-	console.log(userState);
+	const userId = useRef(localStorage.getItem('id'));
 
 	const [formValues, setFormValues] = useState(initialFormValues);
 	const [formErrors /*setFormErrors*/] = useState(initialFormErrors);
@@ -61,7 +59,7 @@ const MyPlants = () => {
 
 	const getPlants = () => {
 		axiosWithAuth()
-			.get(`/plants/${userState.id}`)
+			.get(`/plants/${userId.current}`)
 			.then((res) => {
 				const data = res.data;
 				setPlants(data);
@@ -74,25 +72,34 @@ const MyPlants = () => {
 
 	const postNewPlant = (newPlant) => {
 		axiosWithAuth()
-			.post(`/plants/${userState.id}`, newPlant)
+			.post(`/plants/${userId.current}`, {
+				...newPlant,
+				user_id: userId.current,
+			})
 			.then((res) => {
 				setPlants([res.data, ...plants]);
 			})
 			.catch((err) => {
-				console.log(err);
+				console.log({ err });
 			});
-		console.log(newPlant);
 		setFormValues(initialFormValues);
 	};
 
-	// const editPlant = () => {
-	// 	axiosWithAuth()
-	// 		.put()
-	// 		.then()
-	// 		.catch((err) => {
-	// 			console.log(err);
-	// 		});
-	// };
+	const editPlantInfo = (editPlant, id) => {
+		axiosWithAuth()
+			.put(`/plants/${id}`, {
+				...editPlant,
+				user_id: userId.current,
+			})
+			.then((res) => {
+				console.log(res.data);
+			})
+			.catch((err) => {
+				console.log({ err });
+			});
+
+		console.log(editPlant);
+	};
 
 	const inputChange = (name, value) => {
 		setFormValues({ ...formValues, [name]: value });
@@ -105,6 +112,18 @@ const MyPlants = () => {
 			h2oFrequency: formValues.h2oFrequency.trim(),
 		};
 		postNewPlant(newPlant);
+	};
+
+	console.log(plants);
+
+	const submitEditPlant = (values, id) => {
+		const editPlant = {
+			nickname: values.nickname.trim(),
+			species: values.species.trim(),
+			h2oFrequency: values.h2oFrequency.trim(),
+		};
+
+		editPlantInfo(editPlant, id);
 	};
 
 	useEffect(() => {
@@ -123,14 +142,12 @@ const MyPlants = () => {
 	};
 
 	const showAddPlantForm = () => {
-		// Toggle form hidden
 		setShowAddForm(true);
-		// Toggle add-plant hidden
-		console.log('click');
 	};
 
 	const cancelClick = () => {
 		setShowAddForm(false);
+		setFormValues(initialFormValues);
 	};
 
 	return (
@@ -171,9 +188,14 @@ const MyPlants = () => {
 					return (
 						<UserPlantCard
 							key={plant.plant_id}
-							name={plant.nickname}
+							nickname={plant.nickname}
 							species={plant.species}
-							h2o={plant.h2oFrequency}
+							h2oFrequency={plant.h2oFrequency}
+							change={inputChange}
+							values={formValues}
+							submitEditPlant={submitEditPlant}
+							cancel={cancelClick}
+							plantId={plant.plant_id}
 						/>
 					);
 				})
