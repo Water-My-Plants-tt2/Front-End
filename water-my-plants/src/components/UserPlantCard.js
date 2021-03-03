@@ -40,6 +40,7 @@ const UserPlantCard = (props) => {
 		submitEditPlant(editPlantValues, plantId);
 		setOpen(false);
 		setEditPlantValues(editPlantValues);
+		//
 	};
 
 	// On change handler

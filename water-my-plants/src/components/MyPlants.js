@@ -34,6 +34,7 @@ const initialPlants = [];
 // Set Submit button to disabled
 // Form validation will change this to false when validation passes
 const initialDisabled = true;
+// const initialPlants = [];
 
 const MyPlants = () => {
 	const userId = useRef(localStorage.getItem('id'));
