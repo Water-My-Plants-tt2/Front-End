@@ -22,7 +22,6 @@ const AddPlantForm = (props) => {
 	// On change handler
 	const onChange = (e) => {
 		const { name, value, type, checked } = e.target;
-		// In case a checkbox is added - may not need
 		const valueToUse = type === 'checkbox' ? checked : value;
 		change(name, valueToUse);
 	};
