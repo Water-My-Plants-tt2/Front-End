@@ -16,6 +16,7 @@ const AddPlantForm = (props) => {
 	const onSubmit = (e) => {
 		e.preventDefault();
 		submit();
+		cancel();
 	};
 
 	// On change handler
