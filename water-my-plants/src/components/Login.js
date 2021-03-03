@@ -23,7 +23,7 @@ const LoginForm = ( props ) => {
     const userLogin = ( user ) => {
         axiosWithAuth()
             .post('/auth/login', user) // two args
-            .then( res  => { // this is incomplete, will add in info in a bit
+            .then( res  => { 
                 console.log("POST res: ", res.data.user_id)
                 localStorage.setItem("token", res.data.token)
                 localStorage.setItem("id", res.data.user_id);
