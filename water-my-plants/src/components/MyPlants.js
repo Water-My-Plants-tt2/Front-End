@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { axiosWithAuth } from '../utils/axios';
 import { Avatar, Grid } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
-import AddPlantForm from './AddPlantForm';
-import UserPlantCard from './UserPlantCard';
+import AddPlantForm from './AddPlantForm.js';
+import UserPlantCard from './UserPlantCard.js';
+import userContext from "../contexts/userContext";
 
 //Landing Page after Login
 //Authenticated user can Create, Update and Delete a plant object. At a minimum, each plant must have the following properties:
@@ -48,6 +49,9 @@ const initialDisabled = true;
 // const initialPlants = [];
 
 const MyPlants = () => {
+	const userState = useContext(userContext);
+	console.log(userState)
+
 	const [formValues, setFormValues] = useState(initialFormValues);
 	const [formErrors /*setFormErrors*/] = useState(initialFormErrors);
 	const [plants, setPlants] = useState(initialPlants);
@@ -57,7 +61,7 @@ const MyPlants = () => {
 
 	const getPlants = () => {
 		axiosWithAuth()
-			.get('/plants/9')
+			.get(`/plants/${userState.id}`)
 			.then((res) => {
 				const data = res.data;
 				console.log(data);
@@ -70,7 +74,7 @@ const MyPlants = () => {
 
 	const postNewPlant = (newPlant) => {
 		axiosWithAuth()
-			.post('/plants/9', newPlant)
+			.post(`/plants/${userState.id}`, newPlant)
 			.then((res) => {
 				setPlants([res.data, ...plants]);
 			})
@@ -105,7 +109,7 @@ const MyPlants = () => {
 
 	useEffect(() => {
 		getPlants();
-	}, [plants]);
+	}, []);
 
 	useEffect(() => {
 		!formValues.species || !formValues.nickname || !formValues.h2oFrequency
