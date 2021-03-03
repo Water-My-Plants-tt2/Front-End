@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Form = styled.form`
 padding: 2%;
-max-width: 300px;
+max-width: 250px;
 width: 100%;
 border-radius: 5px;
 box-shadow: 0px 9px 15px 0px rgba(0,0,0,0.5);
@@ -51,7 +51,6 @@ justify-content: center;
         }
 
 button {
-
     border: none;
     background: rgb(169, 216, 132);
     color: white;
@@ -74,4 +73,10 @@ button {
         font-weight: 600;
     }
 }
+
+.hero-iamge {
+    width: 30%;
+    height: 30%;
+}
 `
+export default Form

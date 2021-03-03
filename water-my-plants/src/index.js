@@ -3,28 +3,23 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { BrowserRouter as Router, Route, Switch, NavLink } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import PrivateRoute from "./utils/PrivateRoute";
-
 import Login from "./components/Login";
 import RegisterForm from "./components/Register"
 import MyPlants from "./components/MyPlants";
 import EditProfile from "./components/EditProfile";
 
+
 ReactDOM.render(
     <Router>
       <App />
-      <NavLink to="/login">Login</NavLink>
-      <NavLink to="/register">Register</NavLink>
-      <NavLink to="/plants">Plants</NavLink>
-      <NavLink to="/profile">Profile</NavLink>
-      
       <Switch>
-        <Route path="/login" component={Login} />
-        <Route path="/register" component={RegisterForm} />
-        <PrivateRoute path="/plants" component={MyPlants} />
-        <PrivateRoute path="/profile" component={EditProfile} />
-      </Switch>
+				<Route path="/login" component={Login} />
+				<Route path="/register" component={RegisterForm} />
+				<PrivateRoute path="/plants" component={MyPlants} />
+				<PrivateRoute path="/profile" component={EditProfile} />
+			</Switch>
     </Router>,
   document.getElementById('root')
 );
