@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { axiosWithAuth } from '../utils/axios';
-import AddPlantForm from './AddPlantForm';
-import UserPlantCard from './UserPlantCard';
+import AddPlantForm from './AddPlantForm.js';
+import UserPlantCard from './UserPlantCard.js';
+import userContext from "../contexts/UserContext";
 
 //Landing Page after Login
 //Authenticated user can Create, Update and Delete a plant object. At a minimum, each plant must have the following properties:
@@ -51,12 +52,16 @@ const MyPlants = () => {
 	const [plants, setPlants] = useState(initialPlants);
 	const [disabled /*setDisabled*/] = useState(initialDisabled);
 
+	//contains username, id, phone_number//
+	const user = useContext(userContext);
+
 	const getPlants = () => {
 		axiosWithAuth()
-			.get('/plants/9')
+			.get(`/plants/${user.id}`)
 			.then((res) => {
 				const data = res.data;
-				console.log(data);
+				console.log("GET PLANTS DATA: ", data);
+				setPlants(data)
 			})
 			.catch((err) => {
 				console.log(err);
@@ -66,12 +71,13 @@ const MyPlants = () => {
 
 	const postNewPlant = (newPlant) => {
 		axiosWithAuth()
-			.post('/plants/9', newPlant)
+			.post(`/plants/${user.id}`, { ...newPlant, user_id:user.id })
 			.then((res) => {
+				console.log("POST plant: ", res.data)
 				setPlants([res.data, ...plants]);
 			})
 			.catch((err) => {
-				console.log(err);
+				console.log({ err });
 			});
 		console.log(newPlant);
 		setFormValues(initialFormValues);
@@ -101,7 +107,7 @@ const MyPlants = () => {
 
 	useEffect(() => {
 		getPlants();
-	}, [plants]);
+	}, []);
 
 	useEffect(() => {
 		console.log('Form values are changing');

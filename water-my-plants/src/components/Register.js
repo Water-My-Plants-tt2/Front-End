@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import {axiosWithAuth} from "../utils/axios";
 import { Link, useHistory } from "react-router-dom";
 import { Form } from "./Styling";
+
+import userContext from "../contexts/UserContext";
 
 //user can sign-up / create an account by providing a unique username, a valid mobile phoneNumber and a password.
 
@@ -13,6 +15,9 @@ const initialNewUser = {
 }
 
 const RegisterForm = () => {
+    const test = useContext(userContext);
+    console.log("Register: ", test)
+
     //const {  } = props; // pass in shizzz here from app.js
     const history = useHistory();
     
