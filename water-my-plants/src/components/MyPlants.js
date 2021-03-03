@@ -92,7 +92,17 @@ const MyPlants = () => {
 				user_id: userId.current,
 			})
 			.then((res) => {
-				console.log(res.data);
+				const data = res.config;
+				// const plantCard = document.getElementById(`${id}`);
+				const plantName = document.getElementById(`nickname${id}`);
+				const plantSpecies = document.getElementById(`species${id}`);
+				const plantWater = document.getElementById(`water${id}`);
+
+				plantName.textContent = editPlant.nickname;
+				plantSpecies.textContent = `Species: ${editPlant.species}`;
+				plantWater.textContent = `Water Frequency: ${editPlant.h2oFrequency}`;
+
+				console.log(data);
 			})
 			.catch((err) => {
 				console.log({ err });

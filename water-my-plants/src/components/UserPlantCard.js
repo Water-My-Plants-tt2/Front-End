@@ -83,7 +83,7 @@ const UserPlantCard = (props) => {
 	};
 
 	return (
-		<Grid>
+		<Grid id={plantId}>
 			<Paper elevation={3} style={paperStyle}>
 				<Grid align='center'>
 					<img
@@ -91,9 +91,15 @@ const UserPlantCard = (props) => {
 						src='/images/placeholder.jpg'
 						alt={nickname}
 					/>
-					<h3>{nickname}</h3>
-					<h3>Species: {species}</h3>
-					<h3>Water Frequency: {h2oFrequency}</h3>
+					<h3 id={'nickname' + plantId} className='plant-name'>
+						{nickname}
+					</h3>
+					<p id={'species' + plantId} className='plant-species'>
+						Species: {species}
+					</p>
+					<p id={'water' + plantId} className='plant-water'>
+						Water Frequency: {h2oFrequency}
+					</p>
 				</Grid>
 				<Grid className='card-btn-grid'>
 					<Button
