@@ -48,8 +48,7 @@ const initialDisabled = true;
 // const initialPlants = [];
 
 const MyPlants = () => {
-	const userId = useRef(localStorage.getItem("id"));
-
+	const userId = useRef(localStorage.getItem('id'));
 
 	const [formValues, setFormValues] = useState(initialFormValues);
 	const [formErrors /*setFormErrors*/] = useState(initialFormErrors);
@@ -73,7 +72,10 @@ const MyPlants = () => {
 
 	const postNewPlant = (newPlant) => {
 		axiosWithAuth()
-			.post(`/plants/${userId.current}`, { ...newPlant, user_id: userId.current })
+			.post(`/plants/${userId.current}`, {
+				...newPlant,
+				user_id: userId.current,
+			})
 			.then((res) => {
 				setPlants([res.data, ...plants]);
 			})
@@ -83,14 +85,16 @@ const MyPlants = () => {
 		setFormValues(initialFormValues);
 	};
 
-	// const editPlant = () => {
-	// 	axiosWithAuth()
-	// 		.put()
-	// 		.then()
-	// 		.catch((err) => {
-	// 			console.log(err);
-	// 		});
-	// };
+	const editPlantInfo = (editPlant) => {
+		// axiosWithAuth()
+		// 	.put()
+		// 	.then()
+		// 	.catch((err) => {
+		// 		console.log(err);
+		// 	});
+
+		console.log(editPlant);
+	};
 
 	const inputChange = (name, value) => {
 		setFormValues({ ...formValues, [name]: value });
@@ -103,6 +107,19 @@ const MyPlants = () => {
 			h2oFrequency: formValues.h2oFrequency.trim(),
 		};
 		postNewPlant(newPlant);
+	};
+
+	const submitEditPlant = (values) => {
+		const editPlant = {
+			nickname: values.nickname.trim(),
+			species: values.species.trim(),
+			h2oFrequency: values.h2oFrequency.trim(),
+		};
+
+		editPlantInfo(editPlant);
+
+		// console.log('Edit Plant');
+		// console.log(values);
 	};
 
 	useEffect(() => {
@@ -121,14 +138,12 @@ const MyPlants = () => {
 	};
 
 	const showAddPlantForm = () => {
-		// Toggle form hidden
 		setShowAddForm(true);
-		// Toggle add-plant hidden
-		console.log('click');
 	};
 
 	const cancelClick = () => {
 		setShowAddForm(false);
+		setFormValues(initialFormValues);
 	};
 
 	return (
@@ -169,9 +184,13 @@ const MyPlants = () => {
 					return (
 						<UserPlantCard
 							key={plant.plant_id}
-							name={plant.nickname}
+							nickname={plant.nickname}
 							species={plant.species}
-							h2o={plant.h2oFrequency}
+							h2oFrequency={plant.h2oFrequency}
+							change={inputChange}
+							values={formValues}
+							submitEditPlant={submitEditPlant}
+							cancel={cancelClick}
 						/>
 					);
 				})
