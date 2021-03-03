@@ -29,23 +29,11 @@ const initialFormErrors = {
 	h2oFrequency: '',
 };
 
-const initialPlants = [
-	// {
-	// 	nickname: 'Test Plant',
-	// 	species: 'Plantenstein',
-	// 	h2oFrequency: 'Often',
-	// },
-	// {
-	// 	nickname: 'Test Plant 2',
-	// 	species: 'Plantenstein2',
-	// 	h2oFrequency: 'Oftener',
-	// },
-];
+const initialPlants = [];
 
 // Set Submit button to disabled
 // Form validation will change this to false when validation passes
 const initialDisabled = true;
-// const initialPlants = [];
 
 const MyPlants = () => {
 	const userId = useRef(localStorage.getItem('id'));
@@ -92,8 +80,6 @@ const MyPlants = () => {
 				user_id: userId.current,
 			})
 			.then((res) => {
-				const data = res.config;
-				// const plantCard = document.getElementById(`${id}`);
 				const plantName = document.getElementById(`nickname${id}`);
 				const plantSpecies = document.getElementById(`species${id}`);
 				const plantWater = document.getElementById(`water${id}`);
@@ -101,8 +87,6 @@ const MyPlants = () => {
 				plantName.textContent = editPlant.nickname;
 				plantSpecies.textContent = `Species: ${editPlant.species}`;
 				plantWater.textContent = `Water Frequency: ${editPlant.h2oFrequency}`;
-
-				console.log(data);
 			})
 			.catch((err) => {
 				console.log({ err });
