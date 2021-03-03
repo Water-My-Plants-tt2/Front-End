@@ -137,6 +137,14 @@ const MyPlants = () => {
 		<div className='container'>
 			<header>
 				<h2>My Plants</h2>
+				<div className='add-plant'>
+					<Grid>
+						<h2>Add A Plant</h2>
+						<Avatar style={avatarStyle}>
+							<AddIcon onClick={showAddPlantForm} />
+						</Avatar>
+					</Grid>
+				</div>
 			</header>
 			{showAddForm ? (
 				<AddPlantForm
