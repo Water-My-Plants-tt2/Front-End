@@ -74,14 +74,13 @@ const MyPlants = () => {
 
 	const postNewPlant = (newPlant) => {
 		axiosWithAuth()
-			.post(`/plants/${userState.id}`, newPlant)
+			.post(`/plants/${userState.id}`, { ...newPlant, user_id: userState.id })
 			.then((res) => {
 				setPlants([res.data, ...plants]);
 			})
 			.catch((err) => {
-				console.log(err);
+				console.log({ err });
 			});
-		console.log(newPlant);
 		setFormValues(initialFormValues);
 	};
 
