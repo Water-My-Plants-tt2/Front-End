@@ -1,7 +1,6 @@
-import React, { useState, useEffect, useRef, /*useContext*/ } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 // import axios from 'axios';
 import EditProfileForm from './EditProfileForm';
-//import userContext from "../contexts/userContext";
 
 //Authenticated user can update their phoneNumber and password.
 //Authenticated user can update their phoneNumber and password.

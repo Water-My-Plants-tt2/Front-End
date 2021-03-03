@@ -1,8 +1,7 @@
-import React, { useContext, useState } from "react";
-import {axiosWithAuth} from "../utils/axios";
+import React, { useState } from "react";
+import { axiosWithAuth } from "../utils/axios";
 import { Link, useHistory } from "react-router-dom";
 import { Form } from "./Styling";
-import userContext from "../contexts/userContext";
 
 //user can login to an authenticated session using the credentials provided at account creation / signup.
 ///// Initial Form Values /////
