@@ -1,9 +1,16 @@
 import React from 'react';
-import { Avatar, Button, Grid, Paper, TextField } from '@material-ui/core';
+import {
+	Avatar,
+	Button,
+	Grid,
+	Paper,
+	TextField,
+	Typography,
+} from '@material-ui/core';
 import LocalFloristIcon from '@material-ui/icons/LocalFlorist';
 
 const AddPlantForm = (props) => {
-	const { values, change, submit, disabled } = props;
+	const { values, change, submit, disabled, cancel } = props;
 
 	// On submit handler
 	const onSubmit = (e) => {
@@ -21,7 +28,7 @@ const AddPlantForm = (props) => {
 
 	const paperStyle = {
 		padding: 20,
-		height: '315px',
+		height: 'auto',
 		width: 250,
 		margin: '20px auto',
 	};
@@ -37,8 +44,15 @@ const AddPlantForm = (props) => {
 		backgroundColor: '#A9D884',
 	};
 
+	const cancelBtn = {
+		fontSize: 12,
+		color: 'lightgrey',
+		marginTop: 5,
+		cursor: 'pointer',
+	};
+
 	return (
-		<Grid>
+		<Grid className='add-plant'>
 			<Paper elevation={10} style={paperStyle}>
 				<Grid align='center'>
 					<Avatar style={avatarStyle}>
@@ -97,6 +111,10 @@ const AddPlantForm = (props) => {
 					>
 						Submit
 					</Button>
+
+					<Typography align='center' style={cancelBtn} onClick={cancel}>
+						CANCEL
+					</Typography>
 				</form>
 			</Paper>
 		</Grid>
