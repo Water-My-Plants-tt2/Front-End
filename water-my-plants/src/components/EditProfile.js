@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, /*useContext*/ } from 'react';
 // import axios from 'axios';
 import EditProfileForm from './EditProfileForm';
+//import userContext from "../contexts/userContext";
 
 //Authenticated user can update their phoneNumber and password.
 //Authenticated user can update their phoneNumber and password.
@@ -24,6 +25,8 @@ const initialFormErrors = {
 const initialDisabled = false;
 
 const EditProfile = () => {
+	//const userState = useContext(userContext); //commented because not used.
+
 	const [formValues, setFormValues] = useState(initialFormValues);
 	const [formErrors /*setFormErrors*/] = useState(initialFormErrors);
 	const [disabled /*setDisabled*/] = useState(initialDisabled);
