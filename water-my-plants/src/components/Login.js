@@ -12,7 +12,7 @@ const initialExistingUser = {
 }
 
 const LoginForm = ( props ) => {
-    const userState = useContext(userContext);
+    //const userState = useContext(userContext);
     
     ///// States /////
     // const { values, submit, change, disabled, update } = props; // pass in yo props
@@ -27,7 +27,7 @@ const LoginForm = ( props ) => {
             .then( res  => { // this is incomplete, will add in info in a bit
                 console.log("POST res: ", res.data.user_id)
                 localStorage.setItem("token", res.data.token)
-                userState.id = res.data.user_id;
+                localStorage.setItem("id", res.data.user_id);
                 history.push("/plants")
             })
             .catch(( err ) => {

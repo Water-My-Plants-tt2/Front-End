@@ -1,4 +1,4 @@
-import React, { useState, useEffect, /*useContext*/ } from 'react';
+import React, { useState, useEffect, useRef, /*useContext*/ } from 'react';
 // import axios from 'axios';
 import EditProfileForm from './EditProfileForm';
 //import userContext from "../contexts/userContext";
@@ -25,7 +25,7 @@ const initialFormErrors = {
 const initialDisabled = false;
 
 const EditProfile = () => {
-	//const userState = useContext(userContext); //commented because not used.
+	const userId = useRef(localStorage.getItem("id"));
 
 	const [formValues, setFormValues] = useState(initialFormValues);
 	const [formErrors /*setFormErrors*/] = useState(initialFormErrors);
