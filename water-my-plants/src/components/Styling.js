@@ -44,7 +44,6 @@ background: white;
             border: 1px solid black;
         }
     }
-
 button {
     border: none;
     background: rgb(169, 216, 132);

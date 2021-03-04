@@ -7,7 +7,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import PrivateRoute from "./utils/PrivateRoute";
 import Home from "./components/Home";
 import Login from "./components/Login";
-import RegisterForm from "./components/Register"
+import RegisterForm from "./components/Register";
 import MyPlants from "./components/MyPlants";
 import EditProfile from "./components/EditProfile";
 
