@@ -137,6 +137,9 @@ const MyPlants = () => {
 	const avatarStyle = {
 		backgroundColor: '#A9D884',
 		cursor: 'pointer',
+		width: 20,
+		height: 20,
+		marginRight: 5,
 	};
 
 	const showAddPlantForm = () => {
@@ -152,12 +155,12 @@ const MyPlants = () => {
 		<div className='container'>
 			<header>
 				<h2>My Plants</h2>
-				<div className='add-plant'>
-					<Grid>
-						<h2>Add A Plant</h2>
+				<div className='static-add-plant'>
+					<Grid container='true' alignItems='center'>
 						<Avatar style={avatarStyle}>
 							<AddIcon onClick={showAddPlantForm} />
 						</Avatar>
+						<h2>Add A Plant</h2>
 					</Grid>
 				</div>
 			</header>
