@@ -2,20 +2,16 @@ import React, { useState } from "react";
 import { axiosWithAuth } from "../utils/axios";
 import { Link, useHistory } from "react-router-dom";
 import { Form } from "./Styling";
+import initialFormValues from "../utils/initialFormValues";
+
 
 //user can login to an authenticated session using the credentials provided at account creation / signup.
-///// Initial Form Values /////
-const initialExistingUser = {
-    username: "",
-    password: ""
-}
 
-const LoginForm = ( props ) => {
-    //const userState = useContext(userContext);
-    
+
+const LoginForm = ( ) => {
     ///// States /////
     // const { values, submit, change, disabled, update } = props; // pass in yo props
-    const [ existingUser, setExistingUser ] = useState( initialExistingUser );
+    const [ existingUser, setExistingUser ] = useState( initialFormValues );
     const { username, password } = existingUser;
 
     const history = useHistory();
@@ -47,7 +43,7 @@ const LoginForm = ( props ) => {
         // submit();
         if( username && password ){
             userLogin( existingUser );
-            setExistingUser( initialExistingUser );
+            setExistingUser( initialFormValues );
         }
     }
 

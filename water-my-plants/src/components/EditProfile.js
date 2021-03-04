@@ -1,16 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { axiosWithAuth } from '../utils/axios';
 import EditProfileForm from './EditProfileForm';
+import initialFormValues from "../utils/initialFormValues";
 
 //Authenticated user can update their phoneNumber and password.
 //Authenticated user can update their phoneNumber and password.
-
-// Set initial form values
-const initialFormValues = {
-	username: '',
-	password: '',
-	phone_number: '',
-};
 
 // Set inital form errors
 const initialFormErrors = {

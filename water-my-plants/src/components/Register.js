@@ -2,22 +2,16 @@ import React, { useState } from "react";
 import {axiosWithAuth} from "../utils/axios";
 import { Link, useHistory } from "react-router-dom";
 import { Form } from "./Styling";
+import initialFormValues from "../utils/initialFormValues";
 
 //user can sign-up / create an account by providing a unique username, a valid mobile phoneNumber and a password.
-
-///// Initial Form Values /////
-const initialNewUser = {
-    username: '',
-    phone_number: '',
-    password: ''
-}
 
 const RegisterForm = () => {
     //const {  } = props; // pass in shizzz here from app.js
     const history = useHistory();
     
     ///// States /////
-    const [ newUser, setNewUser ] = useState( initialNewUser );
+    const [ newUser, setNewUser ] = useState( initialFormValues );
     const { username, phone_number, password } = newUser;
     
     const userSignUp = ( newUser ) => {
@@ -40,7 +34,7 @@ const RegisterForm = () => {
         evt.preventDefault();
         if( username && phone_number && password ){
             userSignUp( newUser );
-            setNewUser( initialNewUser);
+            setNewUser( initialFormValues);
         }
     }
 
