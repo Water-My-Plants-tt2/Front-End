@@ -3,6 +3,7 @@ import {axiosWithAuth} from "../utils/axios";
 import { Link, useHistory } from "react-router-dom";
 import { Form } from "./Styling";
 import initialFormValues from "../utils/initialFormValues";
+import { useHandle } from "../utils/useHandle";
 
 //user can sign-up / create an account by providing a unique username, a valid mobile phoneNumber and a password.
 
@@ -11,7 +12,7 @@ const RegisterForm = () => {
     const history = useHistory();
     
     ///// States /////
-    const [ newUser, setNewUser ] = useState( initialFormValues );
+    const [newUser, setNewUser, handleInputChange] = useHandle(initialFormValues)
     const { username, phone_number, password } = newUser;
     
     const userSignUp = ( newUser ) => {
@@ -24,10 +25,6 @@ const RegisterForm = () => {
             .catch(( err ) => {
                 console.log("Error:", err.response.status, err.response.statusText);
             })
-    }
-    ///// Handlers ///// 
-    const handleInputChange = (evt) => {
-        setNewUser({ ...newUser, [ evt.target.name ]: evt.target.value })
     }
 
     const handleSubmitForm = (evt) => {
@@ -52,7 +49,7 @@ const RegisterForm = () => {
                         name = "username"
                         type = "text"
                         value = { username }
-                        onChange = { handleInputChange }
+                        onChange = { e => handleInputChange(e.target) }
                         placeholder = "Username"
                     />
                 
@@ -64,7 +61,7 @@ const RegisterForm = () => {
                         name = "phone_number"
                         type = "tel"
                         value = { phone_number }
-                        onChange = { handleInputChange }
+                        onChange = { e => handleInputChange(e.target) }
                         placeholder = "Phone Number"                    
                     />
                 
@@ -76,7 +73,7 @@ const RegisterForm = () => {
                         name = "password"
                         type = "password"
                         value = { password }
-                        onChange = { handleInputChange }
+                        onChange = { e => handleInputChange(e.target) }
                         placeholder = "Password"
                     />
             </div>
