@@ -152,7 +152,7 @@ const MyPlants = () => {
 	};
 
 	return (
-		<div className='container'>
+		<div id='plants-container' className='container'>
 			<header>
 				<h2>My Plants</h2>
 				<div className='static-add-plant'>
