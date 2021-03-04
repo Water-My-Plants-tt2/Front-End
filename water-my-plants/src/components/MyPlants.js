@@ -134,12 +134,16 @@ const MyPlants = () => {
 			: setDisabled(false);
 	}, [formValues]);
 
-	const avatarStyle = {
+	const avatarStyleHeader = {
 		backgroundColor: '#A9D884',
 		cursor: 'pointer',
 		width: 20,
 		height: 20,
 		marginRight: 5,
+	};
+	const avatarStyle = {
+		backgroundColor: '#A9D884',
+		cursor: 'pointer',
 	};
 
 	const showAddPlantForm = () => {
@@ -157,7 +161,7 @@ const MyPlants = () => {
 				<h2>My Plants</h2>
 				<div className='static-add-plant'>
 					<Grid container='true' alignItems='center'>
-						<Avatar style={avatarStyle}>
+						<Avatar style={avatarStyleHeader}>
 							<AddIcon onClick={showAddPlantForm} />
 						</Avatar>
 						<h2>Add A Plant</h2>
