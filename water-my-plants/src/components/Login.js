@@ -14,7 +14,7 @@ const LoginForm = ( props ) => {
     //const userState = useContext(userContext);
     
     ///// States /////
-    // const { values, submit, change, disabled, update } = props; // pass in yo props
+    // const { values, submit, change, disabled, update } = props; // pass in props
     const [ existingUser, setExistingUser ] = useState( initialExistingUser );
     const { username, password } = existingUser;
 
@@ -53,6 +53,7 @@ const LoginForm = ( props ) => {
 
     return (
         <Form>
+        <div className = "form-container">
             <div className = "form-header">
                 <h2>Login</h2>
             </div>
@@ -86,6 +87,7 @@ const LoginForm = ( props ) => {
 
                 <p className="text-link">Haven't signed up yet? <Link to = "/register" >Register here</Link></p>
             </div>
+        </div>
         </Form>
     );
 };

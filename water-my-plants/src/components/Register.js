@@ -46,6 +46,7 @@ const RegisterForm = () => {
 
     return(
         <Form>
+        <div className = "form-container">
             <div className = "form-header">
                 <h2>Register</h2>
                 <p>Fill out your info below</p>
@@ -98,6 +99,7 @@ const RegisterForm = () => {
                 </p>
             </div>
             
+        </div>
         </Form>
     )
 }

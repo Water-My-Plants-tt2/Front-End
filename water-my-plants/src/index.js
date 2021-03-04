@@ -5,6 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import PrivateRoute from "./utils/PrivateRoute";
+import Home from "./components/Home";
 import Login from "./components/Login";
 import RegisterForm from "./components/Register"
 import MyPlants from "./components/MyPlants";
@@ -15,6 +16,7 @@ ReactDOM.render(
     <Router>
       <App />
       <Switch>
+        <Route path="/home" component={Home} />
 				<Route path="/login" component={Login} />
 				<Route path="/register" component={RegisterForm} />
 				<PrivateRoute path="/plants" component={MyPlants} />
