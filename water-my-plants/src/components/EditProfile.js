@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-// import axios from 'axios';
+import { axiosWithAuth } from '../utils/axios';
 import EditProfileForm from './EditProfileForm';
 
 //Authenticated user can update their phoneNumber and password.
@@ -31,22 +31,27 @@ const EditProfile = () => {
 	const [disabled /*setDisabled*/] = useState(initialDisabled);
 
 	const getProfile = () => {
-		// axios
-		//   .get()
-		//   .then()
-		//   .catch(err => {
-		//     console.log(err);
-		//   })
+		axiosWithAuth()
+		  .get(`/users/${userId.current}`)
+		  .then(res => {
+			  setFormValues({...formValues, username:res.data.username, phone_number:res.data.phone_number})
+		  })
+		  .catch(err => {
+		    console.log({err});
+		  })
 		console.log('Profile useEffect is working');
 	};
 
 	const updateProfile = (newValues) => {
-		// axios
-		//   .put()
-		//   .then()
-		//   .catch(err => {
-		//     console.log(err);
-		//   })
+		axiosWithAuth()
+		  .put(`/auth/${userId.current}/update`, {...formValues, user_id:userId.current})
+		  .then(res => {
+			  console.log("PUT res: ", res.data.message)
+			  getProfile();
+		  })
+		  .catch(err => {
+		    console.log({ err });
+		  })
 		console.log(newValues);
 		setFormValues(initialFormValues);
 	};
@@ -81,6 +86,7 @@ const EditProfile = () => {
 	return (
 		<div>
 			<h2>Profile</h2>
+			<p>{}</p>
 			<EditProfileForm
 				values={formValues}
 				change={inputChange}
