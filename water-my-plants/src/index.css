@@ -40,3 +40,8 @@ header {
 	padding: 5px 20px;
 	color: rgb(80, 80, 80);
 }
+
+.flex-row {
+	display: flex;
+	justify-content: center;
+}
