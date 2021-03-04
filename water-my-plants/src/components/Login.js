@@ -3,6 +3,7 @@ import { axiosWithAuth } from "../utils/axios";
 import { Link, useHistory } from "react-router-dom";
 import { Form } from "./Styling";
 import initialFormValues from "../utils/initialFormValues";
+import { useHandleUser } from "../utils/useHandleUser";
 
 
 //user can login to an authenticated session using the credentials provided at account creation / signup.
@@ -11,7 +12,8 @@ import initialFormValues from "../utils/initialFormValues";
 const LoginForm = ( ) => {
     ///// States /////
     // const { values, submit, change, disabled, update } = props; // pass in yo props
-    const [ existingUser, setExistingUser ] = useState( initialFormValues );
+    /*const [ existingUser, setExistingUser ] = useState( initialFormValues );*/
+    const [existingUser, setExistingUser, handleInputChange] = useHandleUser(initialFormValues)
     const { username, password } = existingUser;
 
     const history = useHistory();
@@ -30,17 +32,8 @@ const LoginForm = ( ) => {
             })
     }
 
-    ///// Handlers /////
-    const handleInputChange = ( evt ) => {
-        setExistingUser({
-            ...existingUser,
-            [evt.target.name]: evt.target.value
-        })
-    }
-
     const handleSubmitForm = ( evt ) => {
         evt.preventDefault();
-        // submit();
         if( username && password ){
             userLogin( existingUser );
             setExistingUser( initialFormValues );
@@ -59,7 +52,7 @@ const LoginForm = ( ) => {
                     name = "username"
                     type = "text"
                     value = { username }
-                    onChange = { handleInputChange }
+                    onChange = { e => handleInputChange(e.target) }
                     placeholder = "Username"    
                 />
             </div>
@@ -69,7 +62,7 @@ const LoginForm = ( ) => {
                     name = "password"
                     type = "password"
                     value = { password }
-                    onChange = { handleInputChange }
+                    onChange = { e => handleInputChange(e.target) }
                     placeholder = "Password"    
                 />
             </div>
