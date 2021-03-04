@@ -50,4 +50,15 @@ header {
 
 .plant-name {
 	color: #7ebe4c;
+	margin: 10px auto;
+	font-size: 1.5rem;
+}
+
+#info-section p {
+	margin: 5px auto;
+	color: rgb(80, 80, 80);
+}
+
+#info-section .MuiGrid-root.card-btn-grid {
+	margin-top: 20px;
 }
