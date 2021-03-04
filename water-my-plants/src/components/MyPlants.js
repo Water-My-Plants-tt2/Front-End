@@ -29,23 +29,11 @@ const initialFormErrors = {
 	h2oFrequency: '',
 };
 
-const initialPlants = [
-	// {
-	// 	nickname: 'Test Plant',
-	// 	species: 'Plantenstein',
-	// 	h2oFrequency: 'Often',
-	// },
-	// {
-	// 	nickname: 'Test Plant 2',
-	// 	species: 'Plantenstein2',
-	// 	h2oFrequency: 'Oftener',
-	// },
-];
+const initialPlants = [];
 
 // Set Submit button to disabled
 // Form validation will change this to false when validation passes
 const initialDisabled = true;
-// const initialPlants = [];
 
 const MyPlants = () => {
 	const userId = useRef(localStorage.getItem('id'));
@@ -67,7 +55,6 @@ const MyPlants = () => {
 			.catch((err) => {
 				console.log(err);
 			});
-		console.log('useEffect is working');
 	};
 
 	const postNewPlant = (newPlant) => {
@@ -92,13 +79,26 @@ const MyPlants = () => {
 				user_id: userId.current,
 			})
 			.then((res) => {
-				console.log(res.data);
+				const plantName = document.getElementById(`nickname${id}`);
+				const plantSpecies = document.getElementById(`species${id}`);
+				const plantWater = document.getElementById(`water${id}`);
+
+				plantName.textContent = editPlant.nickname;
+				plantSpecies.textContent = `Species: ${editPlant.species}`;
+				plantWater.textContent = `Water Frequency: ${editPlant.h2oFrequency}`;
 			})
 			.catch((err) => {
 				console.log({ err });
 			});
+	};
 
-		console.log(editPlant);
+	const deletePlant = (id) => {
+		axiosWithAuth()
+			.delete(`/plants/${id}`, { ...plants, user_id: userId.current })
+			.then(() => getPlants())
+			.catch((err) => {
+				console.log({ err });
+			});
 	};
 
 	const inputChange = (name, value) => {
@@ -113,8 +113,6 @@ const MyPlants = () => {
 		};
 		postNewPlant(newPlant);
 	};
-
-	console.log(plants);
 
 	const submitEditPlant = (values, id) => {
 		const editPlant = {
@@ -136,6 +134,13 @@ const MyPlants = () => {
 			: setDisabled(false);
 	}, [formValues]);
 
+	const avatarStyleHeader = {
+		backgroundColor: '#A9D884',
+		cursor: 'pointer',
+		width: 20,
+		height: 20,
+		marginRight: 5,
+	};
 	const avatarStyle = {
 		backgroundColor: '#A9D884',
 		cursor: 'pointer',
@@ -151,15 +156,15 @@ const MyPlants = () => {
 	};
 
 	return (
-		<div className='container'>
+		<div id='plants-container' className='container'>
 			<header>
 				<h2>My Plants</h2>
-				<div className='add-plant'>
-					<Grid>
-						<h2>Add A Plant</h2>
-						<Avatar style={avatarStyle}>
+				<div className='static-add-plant'>
+					<Grid container='true' alignItems='center'>
+						<Avatar style={avatarStyleHeader}>
 							<AddIcon onClick={showAddPlantForm} />
 						</Avatar>
+						<h2>Add A Plant</h2>
 					</Grid>
 				</div>
 			</header>
@@ -174,32 +179,35 @@ const MyPlants = () => {
 				/>
 			) : null}
 
-			{plants.length === 0 ? (
-				<div className='add-plant'>
-					<Grid align='center'>
-						<h2>Add Your First Plant</h2>
-						<Avatar style={avatarStyle}>
-							<AddIcon onClick={showAddPlantForm} />
-						</Avatar>
-					</Grid>
-				</div>
-			) : (
-				plants.map((plant) => {
-					return (
-						<UserPlantCard
-							key={plant.plant_id}
-							nickname={plant.nickname}
-							species={plant.species}
-							h2oFrequency={plant.h2oFrequency}
-							change={inputChange}
-							values={formValues}
-							submitEditPlant={submitEditPlant}
-							cancel={cancelClick}
-							plantId={plant.plant_id}
-						/>
-					);
-				})
-			)}
+			<div className='flex-row'>
+				{plants.length === 0 ? (
+					<div className='add-plant'>
+						<Grid align='center'>
+							<h2>Add Your First Plant</h2>
+							<Avatar style={avatarStyle}>
+								<AddIcon onClick={showAddPlantForm} />
+							</Avatar>
+						</Grid>
+					</div>
+				) : (
+					plants.map((plant) => {
+						return (
+							<UserPlantCard
+								key={plant.plant_id}
+								nickname={plant.nickname}
+								species={plant.species}
+								h2oFrequency={plant.h2oFrequency}
+								change={inputChange}
+								values={formValues}
+								submitEditPlant={submitEditPlant}
+								cancel={cancelClick}
+								plantId={plant.plant_id}
+								deletePlant={deletePlant}
+							/>
+						);
+					})
+				)}
+			</div>
 		</div>
 	);
 };

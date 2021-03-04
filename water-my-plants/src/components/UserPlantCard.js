@@ -13,7 +13,14 @@ import Fade from '@material-ui/core/Fade';
 import LocalFloristIcon from '@material-ui/icons/LocalFlorist';
 
 const UserPlantCard = (props) => {
-	const { nickname, species, h2oFrequency, submitEditPlant, plantId } = props;
+	const {
+		nickname,
+		species,
+		h2oFrequency,
+		submitEditPlant,
+		deletePlant,
+		plantId,
+	} = props;
 
 	const initialEditValues = {
 		nickname,
@@ -39,7 +46,8 @@ const UserPlantCard = (props) => {
 		e.preventDefault();
 		submitEditPlant(editPlantValues, plantId);
 		setOpen(false);
-		setEditPlantValues(initialEditValues);
+
+		setEditPlantValues(editPlantValues);
 	};
 
 	// On change handler
@@ -51,6 +59,10 @@ const UserPlantCard = (props) => {
 
 	const inputChange = (name, value) => {
 		setEditPlantValues({ ...editPlantValues, [name]: value });
+	};
+
+	const onDelete = () => {
+		deletePlant(plantId);
 	};
 
 	const paperStyle = {
@@ -83,7 +95,7 @@ const UserPlantCard = (props) => {
 	};
 
 	return (
-		<Grid>
+		<Grid id={plantId}>
 			<Paper elevation={3} style={paperStyle}>
 				<Grid align='center'>
 					<img
@@ -91,9 +103,15 @@ const UserPlantCard = (props) => {
 						src='/images/placeholder.jpg'
 						alt={nickname}
 					/>
-					<h3>{nickname}</h3>
-					<h3>Species: {species}</h3>
-					<h3>Water Frequency: {h2oFrequency}</h3>
+					<h3 id={'nickname' + plantId} className='plant-name'>
+						{nickname}
+					</h3>
+					<p id={'species' + plantId} className='plant-species'>
+						Species: {species}
+					</p>
+					<p id={'water' + plantId} className='plant-water'>
+						Water Frequency: {h2oFrequency}
+					</p>
 				</Grid>
 				<Grid className='card-btn-grid'>
 					<Button
@@ -111,6 +129,7 @@ const UserPlantCard = (props) => {
 						type='submit'
 						color='secondary'
 						variant='contained'
+						onClick={onDelete}
 					>
 						Delete
 					</Button>
@@ -122,6 +141,11 @@ const UserPlantCard = (props) => {
 				closeAfterTransition
 				BackdropComponent={Backdrop}
 				BackdropProps={{ timeout: 500 }}
+				style={{
+					display: 'flex',
+					alignItems: 'center',
+					justifyContent: 'center',
+				}}
 			>
 				<Fade in={open}>
 					<Grid className='add-plant'>
