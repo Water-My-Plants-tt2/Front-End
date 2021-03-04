@@ -1,3 +1,4 @@
+
 import React from "react";
 import { axiosWithAuth } from "../utils/axios";
 import { Link, useHistory } from "react-router-dom";
@@ -5,8 +6,8 @@ import { Form } from "./Styling";
 import initialFormValues from "../utils/initialFormValues";
 import { useHandle } from "../utils/useHandle";
 
-
 //user can login to an authenticated session using the credentials provided at account creation / signup.
+
 
 
 const LoginForm = () => {
@@ -40,6 +41,7 @@ const LoginForm = () => {
 
     return (
         <Form>
+        <div className = "form-container">
             <div className = "form-header">
                 <h2>Login</h2>
             </div>
@@ -73,6 +75,7 @@ const LoginForm = () => {
 
                 <p className="text-link">Haven't signed up yet? <Link to = "/register" >Register here</Link></p>
             </div>
+        </div>
         </Form>
     );
 };

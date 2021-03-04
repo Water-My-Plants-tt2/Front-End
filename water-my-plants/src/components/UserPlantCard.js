@@ -46,6 +46,7 @@ const UserPlantCard = (props) => {
 		e.preventDefault();
 		submitEditPlant(editPlantValues, plantId);
 		setOpen(false);
+
 		setEditPlantValues(editPlantValues);
 	};
 
@@ -68,7 +69,7 @@ const UserPlantCard = (props) => {
 		padding: 20,
 		height: 'auto',
 		width: 250,
-		margin: '10px',
+		margin: '20px auto',
 	};
 
 	const avatarStyle = { backgroundColor: '#A9D884' };
@@ -202,6 +203,7 @@ const UserPlantCard = (props) => {
 									color='primary'
 									variant='contained'
 									fullWidth
+									// disabled={disabled}
 								>
 									Submit
 								</Button>

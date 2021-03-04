@@ -3,14 +3,9 @@ import styled from 'styled-components';
 export const Form = styled.form`
 padding: 2%;
 max-width: 250px;
-width: 100%;
 border-radius: 5px;
 box-shadow: 0px 9px 15px 0px rgba(0,0,0,0.5);
 background: white;
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: center;
 .form-header {
     text-align: center;
     margin-bottom: 1rem;
@@ -48,7 +43,7 @@ justify-content: center;
         &:hover{
             border: 1px solid black;
         }
-        }
+    }
 
 button {
     border: none;
@@ -59,7 +54,7 @@ button {
     padding: .5rem 2rem;
     font-size: 1rem; 
     &:hover {
-        background-color: #BCF4F5;
+        background-color: #E26D5A;
     }
 }
 .text-link {
@@ -72,11 +67,6 @@ button {
         color: rgb(169, 216, 132);
         font-weight: 600;
     }
-}
-
-.hero-iamge {
-    width: 30%;
-    height: 30%;
 }
 `
 export default Form
