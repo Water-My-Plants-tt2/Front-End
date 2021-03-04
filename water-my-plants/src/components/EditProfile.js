@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { axiosWithAuth } from '../utils/axios';
 import EditProfileForm from './EditProfileForm';
 import initialFormValues from "../utils/initialFormValues";
+import { useHandle } from "../utils/useHandle";
 
 //Authenticated user can update their phoneNumber and password.
 //Authenticated user can update their phoneNumber and password.
@@ -19,8 +20,8 @@ const initialDisabled = false;
 
 const EditProfile = () => {
 	const userId = useRef(localStorage.getItem("id"));
+	const [formValues, setFormValues, inputChangeTest] = useHandle(initialFormValues)
 
-	const [formValues, setFormValues] = useState(initialFormValues);
 	const [formErrors /*setFormErrors*/] = useState(initialFormErrors);
 	const [disabled /*setDisabled*/] = useState(initialDisabled);
 
@@ -51,15 +52,6 @@ const EditProfile = () => {
 		setFormValues(initialFormValues);
 	};
 
-	const inputChange = (name, value) => {
-		// Validation
-		/////////////
-		setFormValues({
-			...formValues,
-			[name]: value,
-		});
-	};
-
 	const formSubmit = () => {
 		const newValues = {
 			username: formValues.username.trim(),
@@ -84,7 +76,7 @@ const EditProfile = () => {
 			<p>{}</p>
 			<EditProfileForm
 				values={formValues}
-				change={inputChange}
+				change={inputChangeTest}
 				submit={formSubmit}
 				disabled={disabled}
 				errors={formErrors}
