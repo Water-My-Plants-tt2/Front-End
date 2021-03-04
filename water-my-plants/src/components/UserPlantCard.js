@@ -13,7 +13,14 @@ import Fade from '@material-ui/core/Fade';
 import LocalFloristIcon from '@material-ui/icons/LocalFlorist';
 
 const UserPlantCard = (props) => {
-	const { nickname, species, h2oFrequency, submitEditPlant, plantId } = props;
+	const {
+		nickname,
+		species,
+		h2oFrequency,
+		submitEditPlant,
+		deletePlant,
+		plantId,
+	} = props;
 
 	const initialEditValues = {
 		nickname,
@@ -40,7 +47,6 @@ const UserPlantCard = (props) => {
 		submitEditPlant(editPlantValues, plantId);
 		setOpen(false);
 		setEditPlantValues(editPlantValues);
-		//
 	};
 
 	// On change handler
@@ -52,6 +58,10 @@ const UserPlantCard = (props) => {
 
 	const inputChange = (name, value) => {
 		setEditPlantValues({ ...editPlantValues, [name]: value });
+	};
+
+	const onDelete = () => {
+		deletePlant(plantId);
 	};
 
 	const paperStyle = {
@@ -118,6 +128,7 @@ const UserPlantCard = (props) => {
 						type='submit'
 						color='secondary'
 						variant='contained'
+						onClick={onDelete}
 					>
 						Delete
 					</Button>

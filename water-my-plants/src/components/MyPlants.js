@@ -34,7 +34,6 @@ const initialPlants = [];
 // Set Submit button to disabled
 // Form validation will change this to false when validation passes
 const initialDisabled = true;
-// const initialPlants = [];
 
 const MyPlants = () => {
 	const userId = useRef(localStorage.getItem('id'));
@@ -56,7 +55,6 @@ const MyPlants = () => {
 			.catch((err) => {
 				console.log(err);
 			});
-		console.log('useEffect is working');
 	};
 
 	const postNewPlant = (newPlant) => {
@@ -92,8 +90,15 @@ const MyPlants = () => {
 			.catch((err) => {
 				console.log({ err });
 			});
+	};
 
-		console.log(editPlant);
+	const deletePlant = (id) => {
+		axiosWithAuth()
+			.delete(`/plants/${id}`, { ...plants, user_id: userId.current })
+			.then(() => getPlants())
+			.catch((err) => {
+				console.log({ err });
+			});
 	};
 
 	const inputChange = (name, value) => {
@@ -108,8 +113,6 @@ const MyPlants = () => {
 		};
 		postNewPlant(newPlant);
 	};
-
-	console.log(plants);
 
 	const submitEditPlant = (values, id) => {
 		const editPlant = {
@@ -191,6 +194,7 @@ const MyPlants = () => {
 							submitEditPlant={submitEditPlant}
 							cancel={cancelClick}
 							plantId={plant.plant_id}
+							deletePlant={deletePlant}
 						/>
 					);
 				})
