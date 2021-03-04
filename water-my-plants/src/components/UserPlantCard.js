@@ -91,7 +91,7 @@ const UserPlantCard = (props) => {
 		padding: 20,
 		height: 'auto',
 		width: 250,
-		margin: '20px auto',
+		margin: '20px 10px',
 	};
 
 	const avatarStyle = { backgroundColor: '#A9D884' };
@@ -140,7 +140,7 @@ const UserPlantCard = (props) => {
 					<h3 id={'nickname' + plantId} className='plant-name'>
 						{nickname}
 					</h3>
-					<div className={`info-section-${plantId} hidden`}>
+					<div id='info-section' className={`info-section-${plantId} hidden`}>
 						<p id={'species' + plantId} className='plant-species'>
 							Species: {species}
 						</p>
