@@ -1,19 +1,17 @@
-import React, { useState } from "react";
+import React from "react";
 import { axiosWithAuth } from "../utils/axios";
 import { Link, useHistory } from "react-router-dom";
 import { Form } from "./Styling";
 import initialFormValues from "../utils/initialFormValues";
-import { useHandleUser } from "../utils/useHandleUser";
+import { useHandle } from "../utils/useHandle";
 
 
 //user can login to an authenticated session using the credentials provided at account creation / signup.
 
 
-const LoginForm = ( ) => {
+const LoginForm = () => {
     ///// States /////
-    // const { values, submit, change, disabled, update } = props; // pass in yo props
-    /*const [ existingUser, setExistingUser ] = useState( initialFormValues );*/
-    const [existingUser, setExistingUser, handleInputChange] = useHandleUser(initialFormValues)
+    const [existingUser, setExistingUser, handleInputChange] = useHandle(initialFormValues)
     const { username, password } = existingUser;
 
     const history = useHistory();

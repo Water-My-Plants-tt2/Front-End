@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export const useHandleUser = initialValue => {
+export const useHandle = initialValue => {
     const [value, setValue] = useState(initialValue);
     
     const handleChange = input => {
