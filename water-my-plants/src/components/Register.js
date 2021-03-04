@@ -8,7 +8,6 @@ import { useHandle } from "../utils/useHandle";
 //user can sign-up / create an account by providing a unique username, a valid mobile phoneNumber and a password.
 
 const RegisterForm = () => {
-    //const {  } = props; // pass in shizzz here from app.js
     const history = useHistory();
     
     ///// States /////
