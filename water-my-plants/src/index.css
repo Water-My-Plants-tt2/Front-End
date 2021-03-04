@@ -5,6 +5,7 @@ body {
 		sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
+	box-sizing: border-box;
 }
 
 code {
@@ -30,4 +31,12 @@ code {
 
 .add-plant:focus {
 	outline: none;
+}
+
+header {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	padding: 5px 20px;
+	color: rgb(80, 80, 80);
 }
