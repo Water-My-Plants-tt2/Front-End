@@ -50,7 +50,8 @@ const EditProfile = () => {
 			  getProfile();
 		  })
 		  .catch(err => {
-		    console.log({ err });
+			  alert(err.response.data.message);
+			  getProfile();
 		  })
 		console.log(newValues);
 		setFormValues(initialFormValues);
