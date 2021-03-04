@@ -27,3 +27,7 @@ code {
 .hidden {
 	display: none;
 }
+
+.add-plant:focus {
+	outline: none;
+}

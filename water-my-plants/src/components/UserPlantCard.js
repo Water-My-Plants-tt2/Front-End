@@ -36,7 +36,7 @@ const UserPlantCard = (props) => {
 	const handleOpen = () => {
 		setOpen(true);
 	};
-	
+
 	const handleClose = () => {
 		setOpen(false);
 	};
@@ -140,6 +140,11 @@ const UserPlantCard = (props) => {
 				closeAfterTransition
 				BackdropComponent={Backdrop}
 				BackdropProps={{ timeout: 500 }}
+				style={{
+					display: 'flex',
+					alignItems: 'center',
+					justifyContent: 'center',
+				}}
 			>
 				<Fade in={open}>
 					<Grid className='add-plant'>
@@ -197,7 +202,6 @@ const UserPlantCard = (props) => {
 									color='primary'
 									variant='contained'
 									fullWidth
-									// disabled={disabled}
 								>
 									Submit
 								</Button>
