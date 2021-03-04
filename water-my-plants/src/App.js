@@ -11,7 +11,6 @@ function App() {
 	
 	const onClick = (string, evt) => {
 		evt.preventDefault();
-		console.log(string);
 		history.push(string);
 	}
 
