@@ -8,7 +8,7 @@ import { useHandle } from "../utils/useHandle";
 //Authenticated user can update their phoneNumber and password.
 //Authenticated user can update their phoneNumber and password.
 
-// Set inital form errors
+// Set initial form errors
 const initialFormErrors = {
 	username: '',
 	password: '',

@@ -1,4 +1,3 @@
-
 import React from "react";
 import { axiosWithAuth } from "../utils/axios";
 import { Link, useHistory } from "react-router-dom";
@@ -7,8 +6,6 @@ import initialFormValues from "../utils/initialFormValues";
 import { useHandle } from "../utils/useHandle";
 
 //user can login to an authenticated session using the credentials provided at account creation / signup.
-
-
 
 const LoginForm = () => {
     ///// States /////
@@ -21,7 +18,6 @@ const LoginForm = () => {
         axiosWithAuth()
             .post('/auth/login', user) // two args
             .then( res  => { 
-                console.log("POST res: ", res.data.user_id)
                 localStorage.setItem("token", res.data.token)
                 localStorage.setItem("id", res.data.user_id);
                 history.push("/plants")
