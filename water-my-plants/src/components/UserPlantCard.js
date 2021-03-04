@@ -68,7 +68,7 @@ const UserPlantCard = (props) => {
 		padding: 20,
 		height: 'auto',
 		width: 250,
-		margin: '20px auto',
+		margin: '10px',
 	};
 
 	const avatarStyle = { backgroundColor: '#A9D884' };
@@ -94,131 +94,133 @@ const UserPlantCard = (props) => {
 	};
 
 	return (
-		<Grid id={plantId}>
-			<Paper elevation={3} style={paperStyle}>
-				<Grid align='center'>
-					<img
-						className='plantCard'
-						src='/images/placeholder.jpg'
-						alt={nickname}
-					/>
-					<h3 id={'nickname' + plantId} className='plant-name'>
-						{nickname}
-					</h3>
-					<p id={'species' + plantId} className='plant-species'>
-						Species: {species}
-					</p>
-					<p id={'water' + plantId} className='plant-water'>
-						Water Frequency: {h2oFrequency}
-					</p>
-				</Grid>
-				<Grid className='card-btn-grid'>
-					<Button
-						size='small'
-						style={editBtnStyle}
-						type='submit'
-						color='primary'
-						variant='contained'
-						onClick={handleOpen}
-					>
-						Edit
-					</Button>
-					<Button
-						size='small'
-						type='submit'
-						color='secondary'
-						variant='contained'
-						onClick={onDelete}
-					>
-						Delete
-					</Button>
-				</Grid>
-			</Paper>
-			<Modal
-				open={open}
-				onClose={handleClose}
-				closeAfterTransition
-				BackdropComponent={Backdrop}
-				BackdropProps={{ timeout: 500 }}
-				style={{
-					display: 'flex',
-					alignItems: 'center',
-					justifyContent: 'center',
-				}}
-			>
-				<Fade in={open}>
-					<Grid className='add-plant'>
-						<Paper elevation={10} style={paperStyle}>
-							<Grid align='center'>
-								<Avatar style={avatarStyle}>
-									<LocalFloristIcon />
-								</Avatar>
-								<h2>Edit Plant</h2>
-							</Grid>
-
-							<form onSubmit={onSubmit}>
-								<TextField
-									style={inputStyle}
-									label='Plant Name'
-									placeholder='Enter Plant Name'
-									variant='outlined'
-									size='small'
-									fullWidth
-									required
-									name='nickname'
-									value={editPlantValues.nickname}
-									onChange={onChange}
-								/>
-
-								<TextField
-									style={inputStyle}
-									label='Plant Species'
-									placeholder='Enter Plant Species'
-									variant='outlined'
-									size='small'
-									fullWidth
-									required
-									name='species'
-									value={editPlantValues.species}
-									onChange={onChange}
-								/>
-
-								<TextField
-									style={inputStyle}
-									label='Watering Frequency'
-									placeholder='Enter Water Frequency'
-									variant='outlined'
-									size='small'
-									fullWidth
-									required
-									name='h2oFrequency'
-									value={editPlantValues.h2oFrequency}
-									onChange={onChange}
-								/>
-
-								<Button
-									style={submitBtnStyle}
-									type='submit'
-									color='primary'
-									variant='contained'
-									fullWidth
-								>
-									Submit
-								</Button>
-
-								<Typography
-									align='center'
-									style={cancelBtn}
-									onClick={handleClose}
-								>
-									CANCEL
-								</Typography>
-							</form>
-						</Paper>
+		<div className='flex-row'>
+			<Grid id={plantId}>
+				<Paper elevation={3} style={paperStyle}>
+					<Grid align='center'>
+						<img
+							className='plantCard'
+							src='/images/placeholder.jpg'
+							alt={nickname}
+						/>
+						<h3 id={'nickname' + plantId} className='plant-name'>
+							{nickname}
+						</h3>
+						<p id={'species' + plantId} className='plant-species'>
+							Species: {species}
+						</p>
+						<p id={'water' + plantId} className='plant-water'>
+							Water Frequency: {h2oFrequency}
+						</p>
 					</Grid>
-				</Fade>
-			</Modal>
-		</Grid>
+					<Grid className='card-btn-grid'>
+						<Button
+							size='small'
+							style={editBtnStyle}
+							type='submit'
+							color='primary'
+							variant='contained'
+							onClick={handleOpen}
+						>
+							Edit
+						</Button>
+						<Button
+							size='small'
+							type='submit'
+							color='secondary'
+							variant='contained'
+							onClick={onDelete}
+						>
+							Delete
+						</Button>
+					</Grid>
+				</Paper>
+				<Modal
+					open={open}
+					onClose={handleClose}
+					closeAfterTransition
+					BackdropComponent={Backdrop}
+					BackdropProps={{ timeout: 500 }}
+					style={{
+						display: 'flex',
+						alignItems: 'center',
+						justifyContent: 'center',
+					}}
+				>
+					<Fade in={open}>
+						<Grid className='add-plant'>
+							<Paper elevation={10} style={paperStyle}>
+								<Grid align='center'>
+									<Avatar style={avatarStyle}>
+										<LocalFloristIcon />
+									</Avatar>
+									<h2>Edit Plant</h2>
+								</Grid>
+
+								<form onSubmit={onSubmit}>
+									<TextField
+										style={inputStyle}
+										label='Plant Name'
+										placeholder='Enter Plant Name'
+										variant='outlined'
+										size='small'
+										fullWidth
+										required
+										name='nickname'
+										value={editPlantValues.nickname}
+										onChange={onChange}
+									/>
+
+									<TextField
+										style={inputStyle}
+										label='Plant Species'
+										placeholder='Enter Plant Species'
+										variant='outlined'
+										size='small'
+										fullWidth
+										required
+										name='species'
+										value={editPlantValues.species}
+										onChange={onChange}
+									/>
+
+									<TextField
+										style={inputStyle}
+										label='Watering Frequency'
+										placeholder='Enter Water Frequency'
+										variant='outlined'
+										size='small'
+										fullWidth
+										required
+										name='h2oFrequency'
+										value={editPlantValues.h2oFrequency}
+										onChange={onChange}
+									/>
+
+									<Button
+										style={submitBtnStyle}
+										type='submit'
+										color='primary'
+										variant='contained'
+										fullWidth
+									>
+										Submit
+									</Button>
+
+									<Typography
+										align='center'
+										style={cancelBtn}
+										onClick={handleClose}
+									>
+										CANCEL
+									</Typography>
+								</form>
+							</Paper>
+						</Grid>
+					</Fade>
+				</Modal>
+			</Grid>
+		</div>
 	);
 };
 

@@ -175,33 +175,35 @@ const MyPlants = () => {
 				/>
 			) : null}
 
-			{plants.length === 0 ? (
-				<div className='add-plant'>
-					<Grid align='center'>
-						<h2>Add Your First Plant</h2>
-						<Avatar style={avatarStyle}>
-							<AddIcon onClick={showAddPlantForm} />
-						</Avatar>
-					</Grid>
-				</div>
-			) : (
-				plants.map((plant) => {
-					return (
-						<UserPlantCard
-							key={plant.plant_id}
-							nickname={plant.nickname}
-							species={plant.species}
-							h2oFrequency={plant.h2oFrequency}
-							change={inputChange}
-							values={formValues}
-							submitEditPlant={submitEditPlant}
-							cancel={cancelClick}
-							plantId={plant.plant_id}
-							deletePlant={deletePlant}
-						/>
-					);
-				})
-			)}
+			<div className='flex-row'>
+				{plants.length === 0 ? (
+					<div className='add-plant'>
+						<Grid align='center'>
+							<h2>Add Your First Plant</h2>
+							<Avatar style={avatarStyle}>
+								<AddIcon onClick={showAddPlantForm} />
+							</Avatar>
+						</Grid>
+					</div>
+				) : (
+					plants.map((plant) => {
+						return (
+							<UserPlantCard
+								key={plant.plant_id}
+								nickname={plant.nickname}
+								species={plant.species}
+								h2oFrequency={plant.h2oFrequency}
+								change={inputChange}
+								values={formValues}
+								submitEditPlant={submitEditPlant}
+								cancel={cancelClick}
+								plantId={plant.plant_id}
+								deletePlant={deletePlant}
+							/>
+						);
+					})
+				)}
+			</div>
 		</div>
 	);
 };
