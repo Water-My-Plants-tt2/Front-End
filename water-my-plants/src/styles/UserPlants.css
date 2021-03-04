@@ -14,6 +14,11 @@
 	display: none;
 }
 
+#add-first-plant-plants {
+	font-size: 1.8rem;
+	color: #a9d884;
+}
+
 .add-plant:focus {
 	outline: none;
 }
@@ -61,4 +66,8 @@ header {
 
 #info-section .MuiGrid-root.card-btn-grid {
 	margin-top: 20px;
+}
+
+#add-plant-h2 {
+	color: #a9d884;
 }

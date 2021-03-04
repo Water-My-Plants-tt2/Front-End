@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { axiosWithAuth } from '../utils/axios';
-import { Avatar, Grid } from '@material-ui/core';
+import { Avatar, Grid, Button } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
 import AddPlantForm from './AddPlantForm.js';
 import UserPlantCard from './UserPlantCard.js';
@@ -141,9 +141,14 @@ const MyPlants = () => {
 		height: 20,
 		marginRight: 5,
 	};
+
 	const avatarStyle = {
 		backgroundColor: '#A9D884',
 		cursor: 'pointer',
+		marginTop: 20,
+		width: 50,
+		height: 50,
+		boxShadow: '2px 2px 7px rgb(80, 80, 80, 0.8)',
 	};
 
 	const showAddPlantForm = () => {
@@ -183,9 +188,9 @@ const MyPlants = () => {
 				{plants.length === 0 ? (
 					<div className='add-plant'>
 						<Grid align='center'>
-							<h2>Add Your First Plant</h2>
-							<Avatar style={avatarStyle}>
-								<AddIcon onClick={showAddPlantForm} />
+							<h2 id='add-first-plant-plants'>Add Your First Plant</h2>
+							<Avatar style={avatarStyle} onClick={showAddPlantForm}>
+								<AddIcon />
 							</Avatar>
 						</Grid>
 					</div>

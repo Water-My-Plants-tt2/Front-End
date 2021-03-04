@@ -58,7 +58,7 @@ const AddPlantForm = (props) => {
 					<Avatar style={avatarStyle}>
 						<LocalFloristIcon />
 					</Avatar>
-					<h2>Add A Plant</h2>
+					<h2 id='add-plant-h2'>Add A Plant</h2>
 				</Grid>
 
 				<form onSubmit={onSubmit}>
