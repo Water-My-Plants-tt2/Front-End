@@ -25,7 +25,7 @@ const EditProfileForm = (props) => {
 
 	const paperStyle = {
 		padding: 20,
-		height: '315px',
+		height: 'auto',
 		width: 250,
 		margin: '20px auto',
 	};
