@@ -65,6 +65,28 @@ const UserPlantCard = (props) => {
 		deletePlant(plantId);
 	};
 
+	const showInfo = () => {
+		const infoHidden = document.querySelector(
+			`.info-section-${plantId}.hidden`
+		);
+		const showInfoBtn = document.querySelector(`.info-btn-${plantId}`);
+		const closeInfoBtn = document.querySelector(`.close-info-btn-${plantId}`);
+
+		infoHidden.classList.remove('hidden');
+		showInfoBtn.classList.add('hidden');
+		closeInfoBtn.classList.remove('hidden');
+	};
+
+	const closeInfo = () => {
+		const infoHidden = document.querySelector(`.info-section-${plantId}`);
+		const showInfoBtn = document.querySelector(`.info-btn-${plantId}.hidden`);
+		const closeInfoBtn = document.querySelector(`.close-info-btn-${plantId}`);
+
+		infoHidden.classList.add('hidden');
+		showInfoBtn.classList.remove('hidden');
+		closeInfoBtn.classList.add('hidden');
+	};
+
 	const paperStyle = {
 		padding: 20,
 		height: 'auto',
@@ -94,6 +116,18 @@ const UserPlantCard = (props) => {
 		backgroundColor: '#A9D884',
 	};
 
+	const viewInfoStyle = {
+		backgroundColor: '#A9D884',
+		color: 'white',
+		marginTop: 5,
+	};
+
+	const closeInfoStyle = {
+		backgroundColor: '#A9D884',
+		color: 'white',
+		marginTop: 10,
+	};
+
 	return (
 		<Grid id={plantId}>
 			<Paper elevation={3} style={paperStyle}>
@@ -106,33 +140,57 @@ const UserPlantCard = (props) => {
 					<h3 id={'nickname' + plantId} className='plant-name'>
 						{nickname}
 					</h3>
-					<p id={'species' + plantId} className='plant-species'>
-						Species: {species}
-					</p>
-					<p id={'water' + plantId} className='plant-water'>
-						Water Frequency: {h2oFrequency}
-					</p>
-				</Grid>
-				<Grid className='card-btn-grid'>
-					<Button
-						size='small'
-						style={editBtnStyle}
-						type='submit'
-						color='primary'
-						variant='contained'
-						onClick={handleOpen}
-					>
-						Edit
-					</Button>
-					<Button
-						size='small'
-						type='submit'
-						color='secondary'
-						variant='contained'
-						onClick={onDelete}
-					>
-						Delete
-					</Button>
+					<div className={`info-section-${plantId} hidden`}>
+						<p id={'species' + plantId} className='plant-species'>
+							Species: {species}
+						</p>
+						<p id={'water' + plantId} className='plant-water'>
+							Water Frequency: {h2oFrequency}
+						</p>
+						<Grid className='card-btn-grid'>
+							<Button
+								size='small'
+								style={editBtnStyle}
+								type='submit'
+								color='primary'
+								variant='contained'
+								onClick={handleOpen}
+							>
+								Edit
+							</Button>
+							<Button
+								size='small'
+								type='submit'
+								color='secondary'
+								variant='contained'
+								onClick={onDelete}
+							>
+								Delete
+							</Button>
+						</Grid>
+					</div>
+					<Grid className={`info-btn-${plantId}`} align='center'>
+						<Button
+							variant='contained'
+							fullWidth
+							size='small'
+							style={viewInfoStyle}
+							onClick={showInfo}
+						>
+							View Info
+						</Button>
+					</Grid>
+					<Grid className={`close-info-btn-${plantId} hidden`} align='center'>
+						<Button
+							variant='contained'
+							fullWidth
+							size='small'
+							style={closeInfoStyle}
+							onClick={closeInfo}
+						>
+							Close Info
+						</Button>
+					</Grid>
 				</Grid>
 			</Paper>
 			<Modal
