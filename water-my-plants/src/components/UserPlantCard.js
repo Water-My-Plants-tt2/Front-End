@@ -13,7 +13,14 @@ import Fade from '@material-ui/core/Fade';
 import LocalFloristIcon from '@material-ui/icons/LocalFlorist';
 
 const UserPlantCard = (props) => {
-	const { nickname, species, h2oFrequency, submitEditPlant, plantId } = props;
+	const {
+		nickname,
+		species,
+		h2oFrequency,
+		submitEditPlant,
+		deletePlant,
+		plantId,
+	} = props;
 
 	const initialEditValues = {
 		nickname,
@@ -39,7 +46,8 @@ const UserPlantCard = (props) => {
 		e.preventDefault();
 		submitEditPlant(editPlantValues, plantId);
 		setOpen(false);
-		setEditPlantValues(initialEditValues);
+
+		setEditPlantValues(editPlantValues);
 	};
 
 	// On change handler
@@ -53,11 +61,37 @@ const UserPlantCard = (props) => {
 		setEditPlantValues({ ...editPlantValues, [name]: value });
 	};
 
+	const onDelete = () => {
+		deletePlant(plantId);
+	};
+
+	const showInfo = () => {
+		const infoHidden = document.querySelector(
+			`.info-section-${plantId}.hidden`
+		);
+		const showInfoBtn = document.querySelector(`.info-btn-${plantId}`);
+		const closeInfoBtn = document.querySelector(`.close-info-btn-${plantId}`);
+
+		infoHidden.classList.remove('hidden');
+		showInfoBtn.classList.add('hidden');
+		closeInfoBtn.classList.remove('hidden');
+	};
+
+	const closeInfo = () => {
+		const infoHidden = document.querySelector(`.info-section-${plantId}`);
+		const showInfoBtn = document.querySelector(`.info-btn-${plantId}.hidden`);
+		const closeInfoBtn = document.querySelector(`.close-info-btn-${plantId}`);
+
+		infoHidden.classList.add('hidden');
+		showInfoBtn.classList.remove('hidden');
+		closeInfoBtn.classList.add('hidden');
+	};
+
 	const paperStyle = {
 		padding: 20,
 		height: 'auto',
 		width: 250,
-		margin: '20px auto',
+		margin: '20px 10px',
 	};
 
 	const avatarStyle = { backgroundColor: '#A9D884' };
@@ -82,8 +116,20 @@ const UserPlantCard = (props) => {
 		backgroundColor: '#A9D884',
 	};
 
+	const viewInfoStyle = {
+		backgroundColor: '#A9D884',
+		color: 'white',
+		marginTop: 5,
+	};
+
+	const closeInfoStyle = {
+		backgroundColor: '#A9D884',
+		color: 'white',
+		marginTop: 10,
+	};
+
 	return (
-		<Grid>
+		<Grid id={plantId}>
 			<Paper elevation={3} style={paperStyle}>
 				<Grid align='center'>
 					<img
@@ -91,29 +137,60 @@ const UserPlantCard = (props) => {
 						src='/images/placeholder.jpg'
 						alt={nickname}
 					/>
-					<h3>{nickname}</h3>
-					<h3>Species: {species}</h3>
-					<h3>Water Frequency: {h2oFrequency}</h3>
-				</Grid>
-				<Grid className='card-btn-grid'>
-					<Button
-						size='small'
-						style={editBtnStyle}
-						type='submit'
-						color='primary'
-						variant='contained'
-						onClick={handleOpen}
-					>
-						Edit
-					</Button>
-					<Button
-						size='small'
-						type='submit'
-						color='secondary'
-						variant='contained'
-					>
-						Delete
-					</Button>
+					<h3 id={'nickname' + plantId} className='plant-name'>
+						{nickname}
+					</h3>
+					<div id='info-section' className={`info-section-${plantId} hidden`}>
+						<p id={'species' + plantId} className='plant-species'>
+							Species: {species}
+						</p>
+						<p id={'water' + plantId} className='plant-water'>
+							Water Frequency: {h2oFrequency}
+						</p>
+						<Grid className='card-btn-grid'>
+							<Button
+								size='small'
+								style={editBtnStyle}
+								type='submit'
+								color='primary'
+								variant='contained'
+								onClick={handleOpen}
+							>
+								Edit
+							</Button>
+							<Button
+								size='small'
+								type='submit'
+								color='secondary'
+								variant='contained'
+								onClick={onDelete}
+							>
+								Delete
+							</Button>
+						</Grid>
+					</div>
+					<Grid className={`info-btn-${plantId}`} align='center'>
+						<Button
+							variant='contained'
+							fullWidth
+							size='small'
+							style={viewInfoStyle}
+							onClick={showInfo}
+						>
+							View Info
+						</Button>
+					</Grid>
+					<Grid className={`close-info-btn-${plantId} hidden`} align='center'>
+						<Button
+							variant='contained'
+							fullWidth
+							size='small'
+							style={closeInfoStyle}
+							onClick={closeInfo}
+						>
+							Close Info
+						</Button>
+					</Grid>
 				</Grid>
 			</Paper>
 			<Modal
@@ -122,6 +199,11 @@ const UserPlantCard = (props) => {
 				closeAfterTransition
 				BackdropComponent={Backdrop}
 				BackdropProps={{ timeout: 500 }}
+				style={{
+					display: 'flex',
+					alignItems: 'center',
+					justifyContent: 'center',
+				}}
 			>
 				<Fade in={open}>
 					<Grid className='add-plant'>

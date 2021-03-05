@@ -1,6 +1,5 @@
 import React from "react";
 import "../components/Styling";
-import Form from "../components/Styling";
 
 export default function Home ( props ) {
 

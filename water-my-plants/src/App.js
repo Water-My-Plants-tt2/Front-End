@@ -29,7 +29,7 @@ function App() {
 				<div className = "navigation">
 					{ 
 						!localStorage.getItem('id') &&
-						<div>
+						<div className = "navB">
 							<Button onClick = { evt => onClick("/login", evt )}>Login </Button>
 							<Button onClick = { evt => onClick("/register", evt )}>Register</Button>
 						</div>
@@ -39,7 +39,7 @@ function App() {
 
 					{
 						localStorage.getItem('id') &&
-						<div>							
+						<div className = "navB">							
 							<Button onClick	= { evt => onClick("/plants", evt)}>Plants</Button>
 
 							<Button onClick	= { evt => onClick("/profile", evt)}>Profile</Button>

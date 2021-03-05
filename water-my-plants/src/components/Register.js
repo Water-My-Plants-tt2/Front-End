@@ -1,23 +1,17 @@
-import React, { useState } from "react";
+import React from "react";
 import {axiosWithAuth} from "../utils/axios";
 import { Link, useHistory } from "react-router-dom";
 import { Form } from "./Styling";
+import initialFormValues from "../utils/initialFormValues";
+import { useHandle } from "../utils/useHandle";
 
 //user can sign-up / create an account by providing a unique username, a valid mobile phoneNumber and a password.
 
-///// Initial Form Values /////
-const initialNewUser = {
-    username: '',
-    phone_number: '',
-    password: ''
-}
-
 const RegisterForm = () => {
-    //const {  } = props; // pass in shizzz here from app.js
     const history = useHistory();
     
     ///// States /////
-    const [ newUser, setNewUser ] = useState( initialNewUser );
+    const [newUser, setNewUser, handleInputChange] = useHandle(initialFormValues)
     const { username, phone_number, password } = newUser;
     
     const userSignUp = ( newUser ) => {
@@ -31,16 +25,12 @@ const RegisterForm = () => {
                 console.log("Error:", err.response.status, err.response.statusText);
             })
     }
-    ///// Handlers ///// 
-    const handleInputChange = (evt) => {
-        setNewUser({ ...newUser, [ evt.target.name ]: evt.target.value })
-    }
 
     const handleSubmitForm = (evt) => {
         evt.preventDefault();
         if( username && phone_number && password ){
             userSignUp( newUser );
-            setNewUser( initialNewUser);
+            setNewUser( initialFormValues);
         }
     }
 
@@ -59,7 +49,7 @@ const RegisterForm = () => {
                         name = "username"
                         type = "text"
                         value = { username }
-                        onChange = { handleInputChange }
+                        onChange = { e => handleInputChange(e.target) }
                         placeholder = "Username"
                     />
                 
@@ -71,7 +61,7 @@ const RegisterForm = () => {
                         name = "phone_number"
                         type = "tel"
                         value = { phone_number }
-                        onChange = { handleInputChange }
+                        onChange = { e => handleInputChange(e.target) }
                         placeholder = "Phone Number"                    
                     />
                 
@@ -83,7 +73,7 @@ const RegisterForm = () => {
                         name = "password"
                         type = "password"
                         value = { password }
-                        onChange = { handleInputChange }
+                        onChange = { e => handleInputChange(e.target) }
                         placeholder = "Password"
                     />
             </div>

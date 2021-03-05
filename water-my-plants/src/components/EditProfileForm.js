@@ -5,14 +5,6 @@ import PersonIcon from '@material-ui/icons/Person';
 const EditProfileForm = (props) => {
 	const { values, change, submit, disabled } = props;
 
-	// On change handler
-	const onChange = (e) => {
-		const { name, value, type, checked } = e.target;
-		// In case a checkbox is added - may not need
-		const valueToUse = type === 'checkbox' ? checked : value;
-		change(name, valueToUse);
-	};
-
 	// On submit handler
 	const onSubmit = (e) => {
 		e.preventDefault();
@@ -25,7 +17,7 @@ const EditProfileForm = (props) => {
 
 	const paperStyle = {
 		padding: 20,
-		height: '315px',
+		height: 'auto',
 		width: 250,
 		margin: '20px auto',
 	};
@@ -61,7 +53,7 @@ const EditProfileForm = (props) => {
 						fullWidth
 						name='username'
 						value={values.username}
-						onChange={onChange}
+						onChange={e => change(e.target)}
 					/>
 
 					<TextField
@@ -73,7 +65,7 @@ const EditProfileForm = (props) => {
 						fullWidth
 						name='phone_number'
 						value={values.phone_number}
-						onChange={onChange}
+						onChange={e => change(e.target)}
 					/>
 
 					<TextField
@@ -86,7 +78,7 @@ const EditProfileForm = (props) => {
 						name='password'
 						value={values.password}
 						type='password'
-						onChange={onChange}
+						onChange={e => change(e.target)}
 					/>
 
 					<Button

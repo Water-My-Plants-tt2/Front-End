@@ -1,30 +1,23 @@
-import React, { useState } from "react";
+import React from "react";
 import { axiosWithAuth } from "../utils/axios";
 import { Link, useHistory } from "react-router-dom";
 import { Form } from "./Styling";
+import initialFormValues from "../utils/initialFormValues";
+import { useHandle } from "../utils/useHandle";
 
 //user can login to an authenticated session using the credentials provided at account creation / signup.
-///// Initial Form Values /////
-const initialExistingUser = {
-    username: "",
-    password: ""
-}
 
-const LoginForm = ( props ) => {
-    //const userState = useContext(userContext);
-    
+const LoginForm = () => {
     ///// States /////
-    // const { values, submit, change, disabled, update } = props; // pass in props
-    const [ existingUser, setExistingUser ] = useState( initialExistingUser );
+    const [existingUser, setExistingUser, handleInputChange] = useHandle(initialFormValues)
     const { username, password } = existingUser;
 
     const history = useHistory();
 
     const userLogin = ( user ) => {
         axiosWithAuth()
-            .post('/auth/login', user) // two args
+            .post('/auth/login', user) 
             .then( res  => { 
-                console.log("POST res: ", res.data)
                 localStorage.setItem("token", res.data.token)
                 localStorage.setItem("id", res.data.user_id);
                 history.push("/plants")
@@ -35,20 +28,11 @@ const LoginForm = ( props ) => {
             })
     }
 
-    ///// Handlers /////
-    const handleInputChange = ( evt ) => {
-        setExistingUser({
-            ...existingUser,
-            [evt.target.name]: evt.target.value
-        })
-    }
-
     const handleSubmitForm = ( evt ) => {
         evt.preventDefault();
-        // submit();
         if( username && password ){
             userLogin( existingUser );
-            setExistingUser( initialExistingUser );
+            setExistingUser( initialFormValues );
         }
     }
 
@@ -65,7 +49,7 @@ const LoginForm = ( props ) => {
                     name = "username"
                     type = "text"
                     value = { username }
-                    onChange = { handleInputChange }
+                    onChange = { e => handleInputChange(e.target) }
                     placeholder = "Username"    
                 />
             </div>
@@ -75,7 +59,7 @@ const LoginForm = ( props ) => {
                     name = "password"
                     type = "password"
                     value = { password }
-                    onChange = { handleInputChange }
+                    onChange = { e => handleInputChange(e.target) }
                     placeholder = "Password"    
                 />
             </div>
