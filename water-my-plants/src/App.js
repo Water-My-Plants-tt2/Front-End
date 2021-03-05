@@ -27,6 +27,7 @@ function App() {
 				<h1>Water My Plants</h1>
 
 				<div className = "navigation">
+					<Button onClick = { evt => onClick("/home", evt)}>Home</Button>	
 					{ 
 						!localStorage.getItem('id') &&
 						<div className = "navB">
@@ -34,8 +35,6 @@ function App() {
 							<Button onClick = { evt => onClick("/register", evt )}>Register</Button>
 						</div>
 					}
-
-							<Button onClick = { evt => onClick("/home", evt)}>Home</Button>	
 
 					{
 						localStorage.getItem('id') &&

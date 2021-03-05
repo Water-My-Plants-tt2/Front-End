@@ -21,7 +21,7 @@ export default function Home ( props ) {
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Suspendisse interdum consectetur libero id faucibus nisl tincidunt eget nullam.</p>
                     </div>
                     <div className="box-info">
-                        <h3>Temperture</h3>
+                        <h3>Temperature</h3>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. A lacus vestibulum sed arcu non odio euismod lacinia.</p>
                     </div>
                     <div className="box-info">
