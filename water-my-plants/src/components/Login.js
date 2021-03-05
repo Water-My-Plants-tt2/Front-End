@@ -24,10 +24,11 @@ const LoginForm = ( props ) => {
         axiosWithAuth()
             .post('/auth/login', user) // two args
             .then( res  => { 
-                console.log("POST res: ", res.data.user_id)
+                console.log("POST res: ", res.data)
                 localStorage.setItem("token", res.data.token)
                 localStorage.setItem("id", res.data.user_id);
                 history.push("/plants")
+                window.location.reload();
             })
             .catch(( err ) => {
                 console.log("Error:", err.response.status, err.response.statusText)

@@ -16,11 +16,11 @@ ReactDOM.render(
     <Router>
       <App />
       <Switch>
-        <Route path="/home" component={Home} />
 				<Route path="/login" component={Login} />
 				<Route path="/register" component={RegisterForm} />
 				<PrivateRoute path="/plants" component={MyPlants} />
 				<PrivateRoute path="/profile" component={EditProfile} />
+        <Route path="/" component={Home} />
 			</Switch>
     </Router>,
   document.getElementById('root')
