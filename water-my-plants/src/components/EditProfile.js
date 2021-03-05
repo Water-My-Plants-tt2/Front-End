@@ -21,7 +21,7 @@ const initialDisabled = false;
 
 const EditProfile = () => {
 	const userId = useRef(localStorage.getItem("id"));
-	const [formValues, setFormValues, inputChangeTest] = useHandle(initialFormValues)
+	const [formValues, setFormValues, handleInputChange] = useHandle(initialFormValues)
 
 	const [formErrors /*setFormErrors*/] = useState(initialFormErrors);
 	const [disabled /*setDisabled*/] = useState(initialDisabled);
@@ -77,7 +77,7 @@ const EditProfile = () => {
 			<p>{}</p>
 			<EditProfileForm
 				values={formValues}
-				change={inputChangeTest}
+				change={handleInputChange}
 				submit={formSubmit}
 				disabled={disabled}
 				errors={formErrors}
