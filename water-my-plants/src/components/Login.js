@@ -16,11 +16,12 @@ const LoginForm = () => {
 
     const userLogin = ( user ) => {
         axiosWithAuth()
-            .post('/auth/login', user) // two args
+            .post('/auth/login', user) 
             .then( res  => { 
                 localStorage.setItem("token", res.data.token)
                 localStorage.setItem("id", res.data.user_id);
                 history.push("/plants")
+                window.location.reload();
             })
             .catch(( err ) => {
                 console.log("Error:", err.response.status, err.response.statusText)

@@ -126,6 +126,7 @@ const MyPlants = () => {
 
 	useEffect(() => {
 		getPlants();
+		
 	}, []);
 
 	useEffect(() => {

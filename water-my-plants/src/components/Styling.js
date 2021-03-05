@@ -1,11 +1,17 @@
 import styled from 'styled-components';
 
 export const Form = styled.form`
-padding: 2%;
-max-width: 250px;
-border-radius: 5px;
-box-shadow: 0px 9px 15px 0px rgba(0,0,0,0.5);
-background: white;
+width: 100%;
+display: flex;
+justify-content: center;
+padding-top: 5%;
+.form-container {
+    padding: 2%;
+    max-width: 250px;
+    border-radius: 5px;
+    box-shadow: 0px 9px 15px 0px rgba(0,0,0,0.5);
+    background: white;
+}
 .form-header {
     text-align: center;
     margin-bottom: 1rem;
@@ -44,7 +50,6 @@ background: white;
             border: 1px solid black;
         }
     }
-
 button {
     border: none;
     background: rgb(169, 216, 132);
